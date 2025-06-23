@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "posts/Intro/Introduction.html",
-    "href": "posts/Intro/Introduction.html",
-    "title": "Understanding ODELO",
-    "section": "",
-    "text": "Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements."
-  },
-  {
-    "objectID": "posts/Intro/Introduction.html#footnotes",
-    "href": "posts/Intro/Introduction.html#footnotes",
-    "title": "Understanding ODELO",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nI’ve taken this scoring shots terminology from Matter of Stats.↩︎\nThis is the explainer for the Xscore calculations I use.↩︎\nMAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.↩︎\nThis article explains the observed correlation between win probability and expected margin and totals.↩︎"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Holy Grail Ratings",
@@ -47,5 +33,19 @@
     "title": "Posts",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/Intro/Introduction.html",
+    "href": "posts/Intro/Introduction.html",
+    "title": "Understanding ODELO",
+    "section": "",
+    "text": "Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements."
+  },
+  {
+    "objectID": "posts/Intro/Introduction.html#footnotes",
+    "href": "posts/Intro/Introduction.html#footnotes",
+    "title": "Understanding ODELO",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nI’ve taken this scoring shots terminology from Matter of Stats.↩︎\nThis is the explainer for the Xscore calculations I use.↩︎\nMAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.↩︎\nThis article explains the observed correlation between win probability and expected margin and totals.↩︎"
   }
 ]

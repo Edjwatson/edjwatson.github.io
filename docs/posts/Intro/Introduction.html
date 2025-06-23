@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5be4df88c94b192c01b216112fcd391d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a4ad22502df1cb26686777329854745f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -199,7 +199,7 @@ window.Quarto = {
 <p>My model takes a simpler view which relies on a heuristic observation about AFL, an average game has an extremely high number of interactions. A key result? Events at the extremes tend to cancel each other, for every goal conceded from an intercepted kick-in there’s a set shot from a questionable free kick.</p>
 <p>The implication for AFL is that scoring is relatively stable, extreme events tend to have a minimal effect on the final margin. What matters most then? – scoring shots, any attempt on goal, whether a major, behind or clanger <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>Here is a graph of every margin in comparison to the scoring shot differential, highlighting the average contribution of a scoring shot to the margin.</p>
-<div id="3da07dce" class="cell" data-execution_count="2">
+<div id="accf8d14" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -209,7 +209,7 @@ window.Quarto = {
 </div>
 </div>
 <p>A logical question is, what about accuracy? Are the best teams more accurate and the worst more inaccurate, could good - more accurate - teams overcome scoring shot differentials? Surprisingly, teams good or bad rarely manage to outperform or underperform compared to the league average scoring shot conversion. This graph shows each teams conversion rate since 2014.</p>
-<div id="ee868a8e" class="cell" data-execution_count="3">
+<div id="cc62475b" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -249,7 +249,7 @@ window.Quarto = {
 <p>K-factor weights a team’s actual performance compared to their expected performance and determines the size of rating changes. I use an exponentially decaying K-factor dependent on the proportion of the season passed. This reflects some obvious observations about AFL, early in the season there’s not much known about a team’s ability, there’s likely personnel change, game plan change, aging, so significant change in their rating is expected.</p>
 <p>Similarly, towards the end of the season there is more certainty around a team’s ability, the prevalence of dead rubber games in the last few rounds also gives reason to move ratings less.</p>
 <p>Currently I have lazily optimised K-factor by finding an exponential co-efficient which minimises error but is an area for improvement. The progression of the K-facotr looks like this,</p>
-<div id="2008a7df" class="cell" data-execution_count="4">
+<div id="4366982a" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -267,7 +267,7 @@ window.Quarto = {
 <section id="days-to-average" class="level3">
 <h3 class="anchored" data-anchor-id="days-to-average">Days to average</h3>
 <p>This is a simple measure to account for long term changes in the average score, the average score of AFL is relatively stable, with no major short term variations with the exception of the COVID-19 afflicted 2020 season.</p>
-<div id="55041003" class="cell" data-execution_count="5">
+<div id="ac559c25" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -286,7 +286,7 @@ window.Quarto = {
 \text{Win probability} = \frac{1}{e^{-k * \text{Expected Margin}}}
 \]</span></p>
 <p>Plotting this function gives a graph showing the relationship between expected margin and win probability in ODELO.</p>
-<div id="bcbc42a0" class="cell" data-execution_count="6">
+<div id="2db8c67a" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
