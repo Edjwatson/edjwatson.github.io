@@ -19,38 +19,6 @@ import pandas as pd
 from mizani.palettes import gradient_n_pal
 import numpy as np
 
-blog_post_path = 'posts/Intro/Introduction to ODELO.qmd'  # Path to your specific blog post file
-blog_post_name = 'Introduction to ODELO'  # Set the title you want for the blog post card
-blog_post_url = f"{blog_post_path.replace(' ', '-')}.html"  # You might need to adjust the URL structure
-
-# Read snippet from blog post
-with open("posts/Intro/Introduction to ODELO.qmd", "r", encoding="utf-8") as f:
-    lines = f.readlines()
-
-# Read snippet from blog post
-with open("posts/Intro/Introduction to ODELO.qmd", "r", encoding="utf-8") as f:
-    lines = f.readlines()
-
-# Skip YAML front matter, blank lines, and image lines
-content_lines = []
-in_yaml = False
-for line in lines:
-    stripped = line.strip()
-    if stripped == "---":
-        in_yaml = not in_yaml
-        continue
-    if in_yaml or not stripped:
-        continue
-    if stripped.startswith("![]") or stripped.startswith("!["):
-        continue
-    content_lines.append(stripped)
-    if len(content_lines) >= 5:
-        break
-
-snippet = " ".join(content_lines)
-
-
-
 # Theme and CSS
 options.theme = Theme(
     header_style="hsl(233, 9%, 19%) !important",
@@ -187,7 +155,7 @@ to_widget(
                     [
                         tags.div(
                             [
-                                tags.h2("Predictions For Round 15", style="text-align: center; font-size: 32px; margin: 0; padding-top: 8.5px"),
+                                tags.h2("Predictions For Round 16", style="text-align: center; font-size: 32px; margin: 0; padding-top: 8.5px"),
                                 pred_table
                             ],
                             class_="prediction-box"
@@ -196,31 +164,41 @@ to_widget(
                             tags.div(
                                 [
                                     tags.h3(
-                                        blog_post_name,
-                                        style="text-align: left; font-size: 24px; margin: 0; color: #000000; font-style: normal;"
+                                        "Understanding The Ratings",
+                                        style=(
+                                            "text-align: left; font-size: 24px; margin: 0; "
+                                            "color: #000000; font-style: normal;"
+                                        ),
                                     ),
                                     tags.p(
-                                        snippet,
-                                        style=(
-                                            "text-align: left; font-size: 14px; color: #777777; "
-                                            "margin-top: 8px; font-style: normal; font-family: 'PPFormula', sans-serif;"
-                                        )
-                                    )
+                                        "The predictions and ratings cards show the latest output of the ODELO margin model. To read more about how the model works click anywhere on this card.",
+                                        class_="card-style",
+                                    ),
+                                    tags.p(
+                                        "The predictions card shows the expected result fpr each game in the next round. The expected winner is highlighted in green. Margins and win probability are stated from the home team’s perspective.",
+                                        class_="card-style",
+                                    ),
+                                    tags.p(
+                                        "Latest ratings shows the model's internal ranking of teams. Ratings are used to generate the margin predictions each week and are updated after each round.",
+                                        class_="card-style",
+                                    ),
+                                    tags.p(
+                                        "Ratings are measured in points better/worse than the league average score (82). The rating column depicts the sum of the ratings but is a cosmetic measure not used in calculating expected margins.",
+                                        class_="card-style",
+                                    ),
                                 ],
                                 class_="blog-card",
                                 style=(
                                     "background-color: #ffffff; padding: 20px; border-radius: 16px; "
-                                    "box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); font-style: normal;"
-                                )
+                                    "box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);"
+                                ),
                             ),
-                            href=blog_post_url,
+                            href="/posts/Intro/Introduction.html",
                             style="display: block; text-decoration: none; color: inherit;"
-                        )
-
+                        ),
                     ],
                     class_="prediction-panel"
                 ),
-
                 # Right side: Ratings
                 tags.div(
                     [
@@ -323,7 +301,6 @@ to_widget(
                 .rating-panel {
                     width: 100%;
                     padding-right: 0px;
-                    
                 }
             }
         """)

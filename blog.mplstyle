@@ -1,0 +1,37 @@
+figure.facecolor: f5eedc
+axes.facecolor: f5eedc
+
+
+# Font sizes
+font.size: 12
+axes.titlesize: 14
+axes.labelsize: 12
+xtick.labelsize: 10
+ytick.labelsize: 10
+
+# No grid
+axes.grid: false
+
+#colour scheme
+axes.prop_cycle: cycler('color', ['65a458','D14D41','f75ce3'])
+
+
+# Hide all ticks and tick marks
+xtick.bottom: False
+xtick.top: False
+ytick.left: False
+ytick.right: False
+xtick.major.size: 0
+ytick.major.size: 0
+xtick.minor.size: 0
+ytick.minor.size: 0
+
+# Hide all spines for a clean look
+axes.spines.top: False
+axes.spines.right: False
+axes.spines.left: True
+axes.spines.bottom: True
+
+# Lines defaults
+lines.linewidth: 2
+lines.markersize: 6

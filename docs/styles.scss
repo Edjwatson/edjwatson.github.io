@@ -1,5 +1,5 @@
 /*-- scss:defaults --*/
-
+//Set All Global Variables Here//
 //Colours//
 $green:#65a458;
 $gold: #ffd861;
@@ -10,47 +10,22 @@ html body {
   background-color: #f5eedc;
 }
 
-.nav-footer {
-  background-color: #f5eedc!important;
-}
-//Navbar//
+//Navbar Colours//
 $navbar-bg: $green ;
 $navbar-fg: $gold ;
-
-//Blog Styling//
-/* Set base body font */
- body {
-  font-family: 'Editorial New Regular';
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-
-/* Make navbar a flexbox and center items */
-/* Define the default navbar background color */
-
-.navbar {
-padding: 10px 20px;
-}
-
-.navbar-brand img {
-max-height: 75px;
-}
-
-.navbar .nav-link {
-  font-family: 'Editorial New Regular';
-  font-size: 36px;
-}
-
-
-
-
 
 //Fonts//
 @font-face  {
   font-family: 'Editorial New Regular';
   src: local('Editorial New Regular'), url('static/Fonts/PPEditorialNew-Free for personal use/PPEditorialNew-Regular.otf') format('opentype');
   font-weight: normal;
+  font-style: normal;
+  font-display: optional;
+}
+@font-face  {
+  font-family: 'Editorial New Light';
+  src: local('Editorial New Light'), url('static/Fonts/PPEditorialNew-Free for personal use/PPEditorialNew-Ultralight.otf') format('opentype');
+  font-weight: light;
   font-style: normal;
   font-display: optional;
 }
@@ -65,6 +40,56 @@ max-height: 75px;
   font-weight: bold;
 } 
 
+$font-body:'Editorial New Regular';
+$font-blog-body: 'Editorial New Light';
+$font-navbar: 'Editorial New Regular';
+
+
+/*  Weight Variables */
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-bold: 700;
+
+//Blog Styling//
+/* Set default body font */
+ body {
+  font-family: 'Editorial New Regular';
+  font-size: 1rem;
+  line-height: 1;
+}
+
+ /*Navbar Formatting -----------------------------*/
+.navbar {
+padding: 10px 20px;
+}
+
+.navbar-brand img {
+max-height: 75px;
+}
+.logo-img:hover{
+  filter:brightness(90%)
+}
+
+.nav-footer {
+  background-color: #f5eedc!important;
+}
+/*Navbar Typography -----------------------------*/
+.navbar,
+.navbar-brand,
+.navbar-nav,.navbar-nav .dropdown-item {
+  font-family: $font-navbar;
+  font-weight: $weight-medium;
+  font-size: 36px;
+
+}
+
+.nav-link{
+  &:hover,
+  &:focus{
+    color: #e6c257;
+    font-weight: $weight-bold;
+  }
+}
 //Index Panel Formatting//
 .main-container {
     display: flex;
@@ -193,12 +218,27 @@ max-height: 75px;
   padding-bottom: 8px;
 }
 
-body {
-  font-family: 'Editorial New Regular';
+.card-style{
+  text-align: left;
+  font-size: 14px;
+  color: #777777;
+  margin-top: 8px;
+  font-style: normal;
+  font-family: 'PPFormula', sans-serif;
 }
+/* --------------------------------------------------*/
+/* Blog Post Typography and formatting --------------------------*/
+article.quarto-article,
+.quarto-post,
+.blog-post {
+  font-family: $font-blog-body;
+  font-weight: $weight-regular;
+  line-height: 1.6;
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Editorial New Regular';
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-body;
+    font-weight: $weight-bold;
+  }
 }
 
 .footnotes {
@@ -213,3 +253,36 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 0px;
 }
 
+/* Custom sidebar highlight colors */
+.sidebar nav a.active{
+  border-left: 1px solid #33522c !important; //Table of contents left bar style
+}
+
+#TOC a {
+  color: #65a458; //Table of contents text colour
+  text-decoration: none; //Table of contents text style
+}
+
+#TOC a:hover {
+  color: #33522c !important; //Table of contents hover Style
+}
+
+#TOC a.nav-link.active {
+  color: #33522c !important; //Table of contents selected style
+}
+
+/* Default hyperlink styles */
+a {
+  color: #65a458; // Hyperlink non selected
+  text-decoration: none !important; //Hyperlink Underline
+}
+
+a:hover {
+  color: #33522c; // Hyperlink Hover detail
+  text-decoration: none; //Hyperlink Underline
+}
+
+/* Heading Style */
+h2, .h2 {
+  border-bottom: none;
+}

@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-68f1c3147b5921df35851c591e7644e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-5be4df88c94b192c01b216112fcd391d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
         <!-- Center: Logo -->
         <div class="mx-4 d-flex align-items-center" style="display: flex; align-items: center;justify-content: center;">
           <a href="../../">  
-          <img src="../../assets/HGRLogo4.png" alt="Holy Grail Ratings" height="100">
+          <img src="../../assets/HGRLogo4.png" alt="Holy Grail Ratings" height="100" class="logo-img">
         </a>
         </div>
   
@@ -192,43 +192,39 @@ window.Quarto = {
 
 
 <p><img src="Test.png" class="img-fluid"></p>
-<p>Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. There’s a lot of work left to do on this project which I’ll discuss at the end of the post. But for now I think its best to explain how the model currently works, why I’ve made particular choices, and how to interpret the dashboards on the homepage.</p>
+<p>Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements.</p>
 <section id="the-importance-of-scoring-shots" class="level1">
 <h1>The Importance of Scoring Shots</h1>
-<p>To introduce my model for AFL margins consider one question - what is the principal component of a football game’s margin? If you asked head coaches you’d probably get a variety of answers reflecting gameplan - maybe pressure rating, uncontested marks, handball/kick ratio. My model takes a simpler view which relies on a heuristic observation about AFL, an average game has an extremely high number of interactions. A key result? Events at the extremes tend to cancel each other, for every goal conceded from an intercepted kick-in there’s a set shot from a questionable free kick. The implication for AFL is that scoring is relatively stable, extreme events tend to have a minimal effect on the final margin. What matters most then? – scoring shots, any attempt on goal, whether a major, behind or clanger <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Here’s a chart stating the obvious teams who get more shots than their opponent win far more,</p>
-<div id="803a0c44" class="cell" data-execution_count="2">
+<p>To introduce my model for AFL margins consider one question - what is the principal component of a football game’s margin? If you asked head coaches you’d probably get a variety of answers reflecting gameplan - maybe pressure rating, uncontested marks, handball/kick ratio.</p>
+<p>My model takes a simpler view which relies on a heuristic observation about AFL, an average game has an extremely high number of interactions. A key result? Events at the extremes tend to cancel each other, for every goal conceded from an intercepted kick-in there’s a set shot from a questionable free kick.</p>
+<p>The implication for AFL is that scoring is relatively stable, extreme events tend to have a minimal effect on the final margin. What matters most then? – scoring shots, any attempt on goal, whether a major, behind or clanger <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Here is a graph of every margin in comparison to the scoring shot differential, highlighting the average contribution of a scoring shot to the margin.</p>
+<div id="3da07dce" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Introduction to ODELO_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Introduction_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="7644f40a" class="cell" data-execution_count="3">
+<p>A logical question is, what about accuracy? Are the best teams more accurate and the worst more inaccurate, could good - more accurate - teams overcome scoring shot differentials? Surprisingly, teams good or bad rarely manage to outperform or underperform compared to the league average scoring shot conversion. This graph shows each teams conversion rate since 2014.</p>
+<div id="ee868a8e" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Introduction to ODELO_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Introduction_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>A logical question is, what about accuracy? Are the best teams more accurate and the worst more inaccurate, scoring shot differentials potentially just represent a good teams dominance on the field. Surprisingly, teams good or bad rarely manage to outperform or underperform compared to the league average scoring shot conversion. Check out this graph of each teams conversion compared to the league average.</p>
-<div id="9b26ffe5" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Introduction to ODELO_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>It is true however that certain shots are better than others, shots from the goal square vs centre square will have wildly different conversion rates. Thus comes XScore, in my model I use an excellent calculation by AFLLab which weights the value of a shot in comparison to the historical conversion for that shot based on shot position.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> With some stats about scoring shots under our belt it’s time to think about turning it into margin predictions.</p>
+<p>The key takeaway from this graph is the only short term minor deviations from the all time conversion average rate of 53%. In the data the absolute best conversion rate is around 60% and the worst around 40%. The value of a scoring shot at each rate respectively is 4.6 and 3.4, the difference being just 1.2. This means to win the absolute best converting team would require at least 2 shots for every 3 their terribly converting opponent registers. The point being even if a team converted extraordinarily well and their opponent woefully it is extremely hard to overcome scoring shot differentials.</p>
+<p>It is true however that certain shots are better than others, shots from the goal square vs centre square will have wildly different conversion rates. Thus XScore, in my model I use an excellent calculation by AFLLab which weights the value of a shot in comparison to the historical conversion rate based on its location.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> These facts about scoring shots provide the methodology for rating teams’ abiltiies in my model.</p>
 </section>
 <section id="odelo-explainer" class="level1">
 <h1>ODELO Explainer</h1>
-<p>ODELO (Offensive and Defensive Elo) is the model I use to generate team ratings. A team has two ratings, offensive and defensive, measured as the number of points better than the league average number of scoring shots converted at the average rate. Ratings in this form give us an idea of the relative strengths of teams and allows a simple comparison across teams. They also can be easily turned into predictions of the margin by comparing the number of points better an offense is than its opposing defence; to convert to margins the amount the home team offense will outscore the away defense is calculated, the defensive margin is calculated similarly and the final expected margin is just the sum.</p>
+<p>ODELO (Offensive and Defensive Elo) is the model I use to generate team ratings. A team has two ratings, offensive and defensive, measured as the number of points better than the league average number of scoring shots converted at the average rate. Ratings in this form give us an idea of the relative strengths of teams and allows a simple comparison across teams.</p>
+<p>They also can be easily turned into predictions of the margin by comparing the number of points better an offense is than its opposing defence. To convert to margins, the amount the home offense will outscore the away defense is calculated, the defensive margin is calculated similarly and the final expected margin is their sum divided by 2.</p>
 <p><span class="math display">\[
 \text{Expected Home Offensive Margin} = \text{Home Team Offensive Rating} - \text{Away Team Defensive Rating}
 \]</span> <span class="math display">\[
@@ -236,25 +232,28 @@ window.Quarto = {
 \]</span> <span class="math display">\[
 \text{Expected Home Margin} = \frac{\text{Expected Home Offensive Margin} + \text{Expected Home Defensive Margin}}{2}
 \]</span></p>
-<p>ODELO is an Elo system where we use these predicted margins to assess a team’s actual performance and adjust their ratings. Elo systems were developed for chess, and are a well-known technique for assessing the relative strength of teams and players in different sports. The trick to Elo systems is updating ratings, in chess two players ratings are updated after the game using this formula,</p>
+<p>ODELO is an Elo system where the predicted margin is used to assess a team’s actual performance and adjust their ratings. Elo systems were developed for chess, and are a well-known technique for assessing the relative strength of teams and players in different sports. The trick to Elo systems is updating ratings, in chess two players ratings are updated after the game using this formula,</p>
 <p><span class="math display">\[
 \text{New Rating} = \text{Old Rating} + K(\text{Expected Performance} - \text{Actual Performance})
 \]</span></p>
-<p>In chess, Elo ratings are arbitrarily set such that an average player has a rating of 1500 and scaled so that a 200 point rating difference translates to a 75% win probability. In ODELO the ratings are scaled to reflect points relative to the average score, and I have fit my own win probability function. To update ODELO ratings, I have a slightly modified formula, with several parameters. The formulas simply adjusts a teams rating by the amount they outperform the average score,</p>
+<p>In chess, Elo ratings are arbitrarily set such that an average player has a rating of 1500 and scaled so that a 200 point rating difference translates to a 75% win probability. In ODELO the ratings represent how many points a team is better/worse than the average score, and I have fit my own win probability function.</p>
+<p>To update ODELO ratings, I have a slightly modified formula, with several parameters. The formulas simply adjust a teams rating by the amount they outperform the average score,</p>
 <p><span class="math display">\[
 \text{New Offensive Rating} = \text{Old Offensive Rating} + K(\text{Home Expected Score} - \text{Average Score})
 \]</span> <span class="math display">\[
 \text{New Defensive Rating} = \text{Old Defensive Rating} + K(\text{Average Score} - \text{Away Expected Score})
 \]</span></p>
-<p>There are three parameters in the calculation required for optimisation, 1. K-factor 2. Regression to mean 3. Days to Average</p>
+<p>There are three parameters in the calculation I have optimised for, 1. K-factor 2. Regression to mean 3. Days to Average</p>
 <section id="k-factor" class="level3">
 <h3 class="anchored" data-anchor-id="k-factor">K-factor</h3>
-<p>K-factor weights a team’s actual performance compared to their expected performance and determines the size of rating changes. I use an exponentially decaying K-factor dependent on the proportion of the season passed. This reflects some obvious observations about AFL, early in the season there’s not much known about a team’s ability, there’s likely personnel change, game plan change, aging. Similarly, towards the end of the season there is more certainty around a team’s ability, the prevalence of dead rubber games in the last few rounds also gives us reason to not move ratings more. Currently I have lazily optimised this by finding a co-efficient which minimises MAE but this will need improvement and currently performs worse than a constant K-factor. It looks like this,</p>
-<div id="62889533" class="cell" data-execution_count="5">
+<p>K-factor weights a team’s actual performance compared to their expected performance and determines the size of rating changes. I use an exponentially decaying K-factor dependent on the proportion of the season passed. This reflects some obvious observations about AFL, early in the season there’s not much known about a team’s ability, there’s likely personnel change, game plan change, aging, so significant change in their rating is expected.</p>
+<p>Similarly, towards the end of the season there is more certainty around a team’s ability, the prevalence of dead rubber games in the last few rounds also gives reason to move ratings less.</p>
+<p>Currently I have lazily optimised K-factor by finding an exponential co-efficient which minimises error but is an area for improvement. The progression of the K-facotr looks like this,</p>
+<div id="2008a7df" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Introduction to ODELO_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Introduction_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -262,43 +261,49 @@ window.Quarto = {
 </section>
 <section id="regression-to-mean" class="level3">
 <h3 class="anchored" data-anchor-id="regression-to-mean">Regression to mean</h3>
-<p>To account for inter-season effects, it is helpful to shift teams back towards the mean, this accounts well for several small effects which are hard to quantify on their own but clearly have an effect on the game, for example teams which finish a season on a hot run tend to come back to reality as other teams study their gameplan. It also accounts for equalisation measures imposed across the league. Teams offensive and defensive ratings are regressed 30% in between seasons, which is a simple brute force optimisation, and decreases MAE significantly,</p>
+<p>To account for inter-season effects, it is helpful to shift teams back towards the mean, this accounts well for several small effects which are hard to quantify on their own but clearly have an effect on the game, for example teams which finish a season on a hot run tend to come back to reality as other teams study their gameplan.</p>
+<p>Teams offensive and defensive ratings are regressed 30% in between seasons, which is a simple brute force optimisation, and reduces error significantly.</p>
 </section>
 <section id="days-to-average" class="level3">
 <h3 class="anchored" data-anchor-id="days-to-average">Days to average</h3>
-<p>This is a simple measure to account for long term changes in the average score, the average score of AFL is relatively stable, with no major short term variations with the exception of the covid season.</p>
-<div id="0fb5bc43" class="cell" data-execution_count="6">
+<p>This is a simple measure to account for long term changes in the average score, the average score of AFL is relatively stable, with no major short term variations with the exception of the COVID-19 afflicted 2020 season.</p>
+<div id="55041003" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Introduction to ODELO_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Introduction_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>So it is reasonable to use it in the model but the window to determine the average score is optimised to account for any long term systemic trends. This comes out to about x years.</p>
+<p>Average score mainly oscillates around 85, the variation in terms of scoring shots is relatively small worth around 3 scoring shots so I’m not concerned about using the average in the model.</p>
+<p>The days to average window used to determine the average score is optimised to account for any long term systemic trends. This comes out to about 5 years.</p>
 </section>
 </section>
 <section id="win-probability" class="level1">
 <h1>Win Probability</h1>
-<p>I mentioned earlier that chess uses a set formula to convert Elo ratings into implied win probabilities, so does ODELO. Chess Elo’s conversion to win probabilities relies on a key assumption that player performance in a particular game is normally distributes (though now often it is assumed to be log-normal). This forms the basis of Chess’ win probability calculation. I have chosen a different approach fitting a logistic regression of predicted margins to final margins, this returns a sigmoid coefficient.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> This returns a sigmoid function and coefficient which yields this nice graph showing the implied win probability given an expected margin.</p>
-<div id="5bda79bd" class="cell" data-execution_count="7">
+<p>I mentioned earlier that chess uses a set formula to convert Elo ratings into implied win probabilities, so does ODELO. I have fit a logistic regression using historical margins and the ODELO predicted margins, this returns a sigmoid coefficient. To determine win probability I use the sigmoid function as a function of the expected margin. <span class="math display">\[
+\text{Win probability} = \frac{1}{e^{-k * \text{Expected Margin}}}
+\]</span></p>
+<p>Plotting this function gives a graph showing the relationship between expected margin and win probability in ODELO.</p>
+<div id="bcbc42a0" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Introduction to ODELO_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Introduction_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>This is how win probabilities are calculated each week on the homepage.</p>
 </section>
 <section id="performance" class="level1">
 <h1>Performance</h1>
-<p>Back testing with these parameters ODELO has a mean absolute error of 28.8 over 2014 – 2024. This is fairly solid given there are a number of simple improvements to be made but comparing it with other models from Squiggle where the best models tend to have an error of 22 - 27 depending on the year there is plenty of error to trim.</p>
+<p>Back testing with these parameters ODELO has a mean absolute error<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> of 28.8 over 2014 – 2024. This is fairly solid given there are a number of simple improvements to be made. However in comparison with other models on <a href="https://squiggle.com.au/">Squiggle</a> where the best models tend to have an error of 22 - 27 depending on the year, there is plenty of room for improvement in ODELO.</p>
 </section>
 <section id="future-improvements" class="level1">
 <h1>Future Improvements</h1>
-<p>ODELO remains fairly rough, and I have a few improvements to work on. Most obvious is an estimate of home ground advantage, I’ve done some early research on this and plan to write a future post on it. Improving optimisation is another goal, K-factor being the main offender, given its importance to weightings I suspect any improvement will significantly improve performance. Asides from these two I have some other ideas to investigate,</p>
+<p>ODELO remains fairly crude, and I have a few improvements to work on. Most obvious is an estimate of home ground advantage, I’ve done some early research on this and plan to write a future post on it. Improving optimisation is another goal, K-factor being the main offender, given its importance to weightings I suspect any improvement will significantly improve performance. Asides from these two I have some other ideas to investigate,</p>
 <ol type="1">
 <li>A bye adjustment and more broadly a measure to account for differing amounts of rest between teams</li>
 <li>A player based model to blend with ODELO to account for injuries and individual contributions</li>
@@ -309,7 +314,7 @@ window.Quarto = {
 <p>These are a few of the big things that I’m planning to add into the model which will probably take some time but are nonetheless achievable. Hopefully this gave some insight into how the predictions displayed on the home page are calculated and what exactly they represent.</p>
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
-<p>In case you’re interested in how I manage the data for the model and the sources used. I have an SQL database which I populate with data sourced in python using the fitzRoypy wrapper for the fitzRoy API. I draw data from a few sources for forecasting but for optimising to historical data I use game data from Squiggle. I’ve also experimented with historical betting data as a way to measure error, this dataset (ausbetting table) is the best source I’ve been able to find, if you have a better one please get in touch!</p>
+<p>In case you’re interested in how I manage the data for the model and the sources used. I have an SQL database which I populate with data sourced in python using the <a href="https://github.com/sglambert/fitzRoyPy">fitzRoypy</a> wrapper for the [fitzRoy] (https://jimmyday12.github.io/fitzRoy) API. I draw data from a few sources for forecasting but for optimising to historical data I use game data from Squiggle. I’ve also experimented with historical betting data as a way to measure error, this [dataset] (https://www.aussportsbetting.com/data/historical-afl-results-and-odds-data) is the best source I’ve been able to find but I’m on the hunt for more.</p>
 
 
 </section>
@@ -320,8 +325,8 @@ window.Quarto = {
 
 <ol>
 <li id="fn1"><p>I’ve taken this scoring shots terminology from Matter of Stats.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p><a href="https://theafllab.wordpress.com/2021/03/24/introducing-aflxscore/">This is the explainer for the Xscore calculations I use.</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>This is because I want the model to account for all adjustments rather than the win probability function.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://theafllab.wordpress.com/2021/03/24/introducing-aflxscore">This is the explainer for the Xscore calculations I use.</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>MAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p><a href="https://www.matterofstats.com/mafl-stats-journal/2024/7/8/the-relationship-between-expected-victory-margins-and-estimated-win-probabilities">This article explains the observed correlation between win probability and expected margin and totals.</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->

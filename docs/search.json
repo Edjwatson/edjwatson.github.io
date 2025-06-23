@@ -1,24 +1,38 @@
 [
   {
+    "objectID": "posts/Intro/Introduction.html",
+    "href": "posts/Intro/Introduction.html",
+    "title": "Understanding ODELO",
+    "section": "",
+    "text": "Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements."
+  },
+  {
+    "objectID": "posts/Intro/Introduction.html#footnotes",
+    "href": "posts/Intro/Introduction.html#footnotes",
+    "title": "Understanding ODELO",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nI’ve taken this scoring shots terminology from Matter of Stats.↩︎\nThis is the explainer for the Xscore calculations I use.↩︎\nMAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.↩︎\nThis article explains the observed correlation between win probability and expected margin and totals.↩︎"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Holy Grail Ratings",
     "section": "",
-    "text": "Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive ELO (ODELO) system (Read more here) that quantifies the performance of a team’s abilities on each side of the ball relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon wich interest me."
+    "text": "Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive Elo (ODELO) system (Read more here) that quantifies the performance of a team’s abilities on each side of the ball relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon which interest me."
   },
   {
     "objectID": "about.html#about-hgr",
     "href": "about.html#about-hgr",
     "title": "Holy Grail Ratings",
     "section": "",
-    "text": "Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive ELO (ODELO) system (Read more here) that quantifies the performance of a team’s abilities on each side of the ball relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon wich interest me."
+    "text": "Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive Elo (ODELO) system (Read more here) that quantifies the performance of a team’s abilities on each side of the ball relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon which interest me."
   },
   {
     "objectID": "about.html#about-me",
     "href": "about.html#about-me",
     "title": "Holy Grail Ratings",
     "section": "About Me",
-    "text": "About Me\nI’m Edward Watson, an undergraduate at the Australian National University, studying Mathematial Finance and Politics, Philosophy and Economics. I’m intereted in statistics and financial and betting markets, and most importantly AFL. The goal of HGR is to combine these interests to create a margin model with an edge on betting markets. Outside of my stuides I work as a management consultant and enjoy swimming and running.\nIf you’re interested in talking, send me a message at holygrailratings@gmail.com or on X at @HG_Ratings."
+    "text": "About Me\nI’m an undergraduate at the Australian National University, studying Mathematial Finance and Politics, Philosophy and Economics. I’m interested in statistics and financial and betting markets, and most importantly AFL. The long-term goal of HGR is to combine these interests to create a margin model with an edge on betting markets. Outside of my stuides I work as a management consultant and enjoy swimming and running.\nIf you’re interested in talking, send me a message at holygrailratings@gmail.com or on X at @HG_Ratings."
   },
   {
     "objectID": "about.html#favourite-resources",
@@ -30,22 +44,8 @@
   {
     "objectID": "posts/index.html",
     "href": "posts/index.html",
-    "title": "Blog",
+    "title": "Posts",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/Intro/Introduction to ODELO.html",
-    "href": "posts/Intro/Introduction to ODELO.html",
-    "title": "Understanding ODELO",
-    "section": "",
-    "text": "Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. There’s a lot of work left to do on this project which I’ll discuss at the end of the post. But for now I think its best to explain how the model currently works, why I’ve made particular choices, and how to interpret the dashboards on the homepage."
-  },
-  {
-    "objectID": "posts/Intro/Introduction to ODELO.html#footnotes",
-    "href": "posts/Intro/Introduction to ODELO.html#footnotes",
-    "title": "Understanding ODELO",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nI’ve taken this scoring shots terminology from Matter of Stats.↩︎\nThis is the explainer for the Xscore calculations I use.↩︎\nThis is because I want the model to account for all adjustments rather than the win probability function.↩︎\nThis article explains the observed correlation between win probability and expected margin and totals.↩︎"
   }
 ]

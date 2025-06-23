@@ -1,6 +1,6 @@
 ---
-title: "Blog"
-subtitle: "Tosser Talks Footy"
+title: "Posts"
+subtitle: "Thinking about football"
 listing:
     id: listing
     fields: [image,date,title, description]
@@ -12,7 +12,6 @@ page-layout: full
 date-format: medium
 author: ""
 date-modified: ""
-resources: /Users/edwardwatson/Documents/AFL Model/Website/assets/HGR.png
 ---
 
 

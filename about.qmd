@@ -1,20 +1,13 @@
 ---
 title: ""
-include-in-header:
-  text: |
-    <style type="text/css">
-      h2, .h2 {
-        border-bottom: none;
-      }
-    </style>
 ---
 ## About HGR
-Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive ELO (ODELO) system (Read more here) that quantifies the performance of a team's abilities on each side of the ball relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon wich interest me. 
+Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive Elo (ODELO) system [(Read more here)](/Posts/Intro/Introduction.html) that quantifies the performance of a team's abilities on each side of the ball relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon which interest me. 
 
 ## About Me
-I'm Edward Watson, an undergraduate at the Australian National University, studying Mathematial Finance and Politics, Philosophy and Economics. I'm intereted in statistics and financial and betting markets, and most importantly AFL. The goal of HGR is to combine these interests to create a margin model with an edge on betting markets. Outside of my stuides I work as a management consultant and enjoy swimming and running.
+I'm an undergraduate at the Australian National University, studying Mathematial Finance and Politics, Philosophy and Economics. I'm interested in statistics and financial and betting markets, and most importantly AFL. The long-term goal of HGR is to combine these interests to create a margin model with an edge on betting markets. Outside of my stuides I work as a management consultant and enjoy swimming and running.
 
-If you're interested in talking, send me a message at holygrailratings@gmail.com or on X at @HG_Ratings.
+If you're interested in talking, send me a message at holygrailratings@gmail.com or on X at [@HG_Ratings](https://x.com/HG_Ratings).
 
 ## Favourite Resources
 A collection of resources that I've found helpful in the process of developing my model.
