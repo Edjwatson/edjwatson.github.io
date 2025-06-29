@@ -1,8 +1,10 @@
 id,Round,Home,Away,Venue,Margin,Prob
-7095,16,Port Adelaide,Carlton,Adelaide Oval,6.7,0.54
-7092,16,Sydney,Western Bulldogs,SCG,-4.2,0.47
-7116,16,Gold Coast,Melbourne,People First Stadium,5.3,0.53
-7091,16,Hawthorn,North Melbourne,University of Tasmania Stadium,44.8,0.77
-7090,16,Collingwood,West Coast,Marvel Stadium,27.4,0.67
-7094,16,Richmond,Adelaide,MCG,-29.9,0.31
-7096,16,Fremantle,St Kilda,Optus Stadium,14.1,0.59
+7101,17,North Melbourne,Western Bulldogs,Marvel Stadium,-51.6,0.2
+7097,17,Carlton,Collingwood,MCG,-7.1,0.45
+7104,17,West Coast,Greater Western Sydney,Optus Stadium,-18.7,0.38
+7100,17,Essendon,Gold Coast,Marvel Stadium,-0.1,0.5
+7112,17,Geelong,Richmond,GMHBA Stadium,37.6,0.73
+7105,17,Brisbane Lions,Port Adelaide,Gabba,11.9,0.58
+7102,17,St Kilda,Hawthorn,Marvel Stadium,-16.6,0.39
+7103,17,Sydney,Fremantle,SCG,6.5,0.54
+7106,17,Adelaide,Melbourne,Adelaide Oval,6.5,0.54
