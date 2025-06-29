@@ -8,9 +8,6 @@ website:
   title: "Holy Grail Ratings"
   site-url: holygrailratings.com
   favicon: assets/HGR2.png
-  twitter-card:
-    creator: "@HG_Ratings"
-    card-style: summary
   page-footer: 
     center: 
       - text: "Edward Watson 2025"
