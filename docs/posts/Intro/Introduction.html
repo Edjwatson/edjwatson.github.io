@@ -68,6 +68,21 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Z4CE7FBC8X"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Z4CE7FBC8X', { 'anonymize_ip': true});
+</script>
+<meta name="twitter:title" content="Understanding ODELO – Holy Grail Ratings">
+<meta name="twitter:description" content="An introduction to the model I use to make predictions">
+<meta name="twitter:image" content="https://holygrailratings.com/posts/Intro/Test.png">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="1064">
+<meta name="twitter:card" content="summary_large_image">
 </head><body><nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
       <div class="d-flex justify-content-center align-items-center w-100">
@@ -199,7 +214,7 @@ window.Quarto = {
 <p>My model takes a simpler view which relies on a heuristic observation about AFL, an average game has an extremely high number of interactions. A key result? Events at the extremes tend to cancel each other, for every goal conceded from an intercepted kick-in there’s a set shot from a questionable free kick.</p>
 <p>The implication for AFL is that scoring is relatively stable, extreme events tend to have a minimal effect on the final margin. What matters most then? – scoring shots, any attempt on goal, whether a major, behind or clanger <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>Here is a graph of every margin in comparison to the scoring shot differential, highlighting the average contribution of a scoring shot to the margin.</p>
-<div id="44f5c288" class="cell" data-execution_count="2">
+<div id="8c183655" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -209,7 +224,7 @@ window.Quarto = {
 </div>
 </div>
 <p>A logical question is, what about accuracy? Are the best teams more accurate and the worst more inaccurate, could good - more accurate - teams overcome scoring shot differentials? Surprisingly, teams good or bad rarely manage to outperform or underperform compared to the league average scoring shot conversion. This graph shows each teams conversion rate since 2014.</p>
-<div id="001ee0bb" class="cell" data-execution_count="3">
+<div id="3cf7a0f4" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -249,7 +264,7 @@ window.Quarto = {
 <p>K-factor weights a team’s actual performance compared to their expected performance and determines the size of rating changes. I use an exponentially decaying K-factor dependent on the proportion of the season passed. This reflects some obvious observations about AFL, early in the season there’s not much known about a team’s ability, there’s likely personnel change, game plan change, aging, so significant change in their rating is expected.</p>
 <p>Similarly, towards the end of the season there is more certainty around a team’s ability, the prevalence of dead rubber games in the last few rounds also gives reason to move ratings less.</p>
 <p>Currently I have lazily optimised K-factor by finding an exponential co-efficient which minimises error but is an area for improvement. The progression of the K-facotr looks like this,</p>
-<div id="9df84455" class="cell" data-execution_count="4">
+<div id="447c1fcb" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -267,7 +282,7 @@ window.Quarto = {
 <section id="days-to-average" class="level3">
 <h3 class="anchored" data-anchor-id="days-to-average">Days to average</h3>
 <p>This is a simple measure to account for long term changes in the average score, the average score of AFL is relatively stable, with no major short term variations with the exception of the COVID-19 afflicted 2020 season.</p>
-<div id="ef824151" class="cell" data-execution_count="5">
+<div id="e5058a00" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -286,7 +301,7 @@ window.Quarto = {
 \text{Win probability} = \frac{1}{e^{-k * \text{Expected Margin}}}
 \]</span></p>
 <p>Plotting this function gives a graph showing the relationship between expected margin and win probability in ODELO.</p>
-<div id="c3e16a6d" class="cell" data-execution_count="6">
+<div id="5e1cf72a" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -420,7 +435,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("holygrailratings\.com");
+      var filterRegex = new RegExp("https:\/\/holygrailratings\.com\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

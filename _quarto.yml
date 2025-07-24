@@ -6,8 +6,10 @@ project:
 
 website:
   title: "Holy Grail Ratings"
-  site-url: holygrailratings.com
   favicon: assets/HGR2.png
+  twitter-card: true
+  site-url: https://holygrailratings.com/
+  google-analytics: "G-Z4CE7FBC8X"
   page-footer: 
     center: 
       - text: "Edward Watson 2025"

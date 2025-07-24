@@ -1,1 +1,1 @@
-Sitemap: holygrailratings.com/sitemap.xml
+Sitemap: https://holygrailratings.com/sitemap.xml

@@ -98,6 +98,21 @@ ul.task-list li input[type="checkbox"] {
     }
   })
   </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Z4CE7FBC8X"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Z4CE7FBC8X', { 'anonymize_ip': true});
+</script>
+<meta name="twitter:title" content="Posts – Holy Grail Ratings">
+<meta name="twitter:description" content="Thinking about football">
+<meta name="twitter:image" content="https://holygrailratings.com/posts/Intro/Test.png">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="1064">
+<meta name="twitter:card" content="summary_large_image">
 </head><body><nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
       <div class="d-flex justify-content-center align-items-center w-100">
@@ -325,7 +340,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("holygrailratings\.com");
+      var filterRegex = new RegExp("https:\/\/holygrailratings\.com\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
