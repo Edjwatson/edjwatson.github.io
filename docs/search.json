@@ -32,7 +32,21 @@
     "href": "posts/index.html",
     "title": "Posts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nThe K-Surface\n\n\nImproving the optimisation of the K-factor\n\n\n\nNov 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/KFactor/Kfactor.html",
+    "href": "posts/KFactor/Kfactor.html",
+    "title": "The K-Surface",
+    "section": "",
+    "text": "After a prolonged break (uni and full time work keeps you quite busy it turns out), I’m back with a post about optimisation and one of many model updates I’ve not had time to write up. In my first post I alluded to K-factor as being the worst optimised parameter in the model despite its importance in an ELO model. In this post I’m going to outline the method I explored to improve on the existing K factor used in the model, which at the moment is an exponentially decaying function depending on the where a game is in the season."
+  },
+  {
+    "objectID": "posts/KFactor/Kfactor.html#footnotes",
+    "href": "posts/KFactor/Kfactor.html#footnotes",
+    "title": "The K-Surface",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAt least for this model I’d like a high degree of explainability↩︎\nFor the optimisation I’ve applied only continuity is required, but I believe this property is reasonable to assume↩︎\nI wrote this before the addition of wildcard round and feel even more sure about it now↩︎"
   },
   {
     "objectID": "posts/Intro/Introduction.html",

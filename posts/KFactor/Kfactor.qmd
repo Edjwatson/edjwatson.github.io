@@ -1,0 +1,323 @@
+---
+title: "The K-Surface"
+date: "2025-11-25"
+categories: [Footy,ODELO, Model updates, Optimisation]
+description: "Improving the optimisation of the K-factor"
+execute:
+    echo: False
+    code-tools: True
+    warning: False
+image: "Ksurfacechart.png"
+jupyter: systempy
+
+---
+
+```{python}
+#Load up packages and plotstyles
+import seaborn as sns
+import matplotlib.pyplot as plt,pathlib
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import pandas as pd
+import matplotlib.dates as mdates
+import matplotlib.font_manager as fm
+from pathlib import Path
+
+sns.set_theme(style="white")  # set seaborn theme if needed
+
+plt.style.use("/Users/edwardwatson/Documents/AFLModel/Website/blog.mplstyle") #sets HGR rating
+
+font_path = Path("/Users/edwardwatson/Documents/AFLModel/Website/static/Fonts/PPFormula/PPFormulaMedium.otf") #load fonts
+fm.fontManager.addfont(str(font_path))
+font_name = fm.FontProperties(fname=font_path).get_name()
+
+plt.rcParams["font.family"] = font_name
+
+colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
+```
+
+# Introduction
+After a prolonged break (uni and full time work keeps you quite busy it turns out), I’m back with a post about optimisation and one of many model updates I’ve not had time to write up. In my first post I alluded to K-factor as being the worst optimised parameter in the model despite its importance in an ELO model. In this post I'm going to outline the method I explored to improve on the existing K factor used in the model, which at the moment is an exponentially decaying function depending on the where a game is in the season.
+
+# Optimisation Logic
+In approaching the problem of K-factor optimisation I set out with some initial assumptions. These assumptions provide some constraints to aid in optimisation as well as fulfilling logical properties we’d expect of the season.[^1] 
+
+Assumed properties of the K-function:
+1.	K-factor is a function of the proportion of the season gone
+2.	The function is smooth[^2] 
+3.	The function is non-increasing
+
+In simpler terms, the weighting given to a team’s performance should be continuous.
+
+This means if the AFL added a 9 and ¾ round (I wouldn’t put it past them) [^3] the function would still be applicable; this wouldn’t be possible if fitting a function too closely to historic proportions of the season since the number of games in a season has fluctuated, limiting the set of values available. 
+
+The non-increasing property implies that performances should not be weighted any more than any one game before them. This should reflect the nature of the information we have about teams as the season progresses and accounts for early uncertainty and dampens the effects of dead rubber matches late in the year. Critics might equally say late improvers will be under accounted for, which is a definite possibility and a drawback for the ratings system.  
+
+# The K-surface 
+
+The biggest indicator for me that improvement was needed for the K parameter was that the average error in the front and back halves of the season were fairly far off the actual average, with a slight skew towards the end of the season. To visualise this, I ran a few thousand iterations of the model with pairs of the form (k-factor, season proportion) as variables. After we run the model and calculate the error we interpolate tuples of (k-value, proportion, error) which gives a visually appealing plot of what I’ve nicknamed the K-surface, an error surface in terms of k-value and season proportion.
+
+```{python}
+#| fig-width: 6
+#| fig-height: 5
+#| fig-align: "center"
+#| dpi: 150
+from scipy.interpolate import griddata
+
+k_surface = pd.read_csv("data/K_surfacev1.csv")
+
+#setup for plotting
+k_surface = np.array(k_surface)
+X,Y,Z = k_surface[:,1], k_surface[:,2],k_surface[:,3]
+
+# Create a grid
+xi = np.linspace(X.min(), X.max(), 100)
+yi = np.linspace(Y.min(), Y.max(), 100)
+xi, yi = np.meshgrid(xi, yi)
+
+# Interpolate Z values on the grid
+zi = griddata((X, Y), Z, (xi, yi), method='cubic')
+
+# Plot
+fig = plt.figure(figsize= (10,10))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(xi, yi, zi,linewidth = 0, cmap='plasma',alpha = 0.5)
+ax.set_xlabel("K-Factor")
+ax.set_ylabel("Proportion of Season Gone")
+ax.set_zlabel("MAE", rotation = 90)
+ax.set_title("K-surface, Model error by K factor and season proportion pair")
+
+# Optional legend
+ax.legend()
+plt.tight_layout()
+plt.show()
+
+```
+
+This comes with an accompanying and more readable contour map. Where plotting the current K functions over the top along with the optimal constant K, its clear that the current function in the model is unsatisfactory.
+
+```{python}
+#| fig-width: 6
+#| fig-height: 5
+#| fig-align: "center"
+#| dpi: 150
+k_surface = pd.read_csv("data/K_surfacev1.csv")
+#setup for plotting
+k_surface = np.array(k_surface)
+X,Y,Z = k_surface[:,1], k_surface[:,2],k_surface[:,3]
+
+xi_vals = np.linspace(X.min(), X.max(), 100)
+yi_vals = np.linspace(Y.min(), Y.max(), 100)
+xi, yi = np.meshgrid(xi_vals, yi_vals)
+zi = griddata((X, Y), Z, (xi, yi), method='cubic')
+
+# Create figure
+plt.figure(figsize=(10, 8))
+
+# Plot filled contour
+contour = plt.contourf(xi, yi, zi, levels=20, cmap='plasma')
+# Overlay contour lines
+plt.contour(xi, yi, zi, levels=20, colors='black', linewidths=0.5)
+
+# Add colorbar
+plt.colorbar(contour, label='MAE')
+
+# Plot exponential function: y = exp(-3.75 * x)
+x_exp = np.linspace(0, 1, 500) #prop gone
+y_exp = np.exp(-3.75 * x_exp) #K-Calculated
+plt.plot(x_exp, y_exp, color='red', linewidth=2, label='Current Exponential K-Function')
+
+y_new = np.full(len(x_exp),0.16)
+plt.plot(y_new, x_exp, color='teal', linewidth=2, label='Optimised Constant K')
+
+
+# Axis labels and title
+plt.xlabel("K-Factor")
+plt.ylabel("Proportion of Season Gone")
+plt.title("Contour Map of K-Surface")
+plt.legend()
+#plt.axis('equal')
+plt.ylim(0,0.9)
+
+plt.show()
+```
+
+
+# The Optimisation Problem
+With the problem clear, its time to move on to determining a technique for optimisation. The optimisation problem is to determine a function $k(s)$ where $s$ is the proportion of the season gone and minimises the interpolated error function $f(k(s),s)$ which is described by the tuples generated earlier. 
+
+$k(s)$ is an approximation of what I’m calling the ‘minimal’ contour of the k-surface. If you were to think about this in physical terms the k-surface is a bit like mountains and the minimal contour would be where a river would naturally form from rainfall.
+
+To optimise I bucketed proportions of the season into groups of proportions to account for the differing proportions caused by different season lengths to attain a greater sample size and avoid over fit.
+
+After spending quite a bit of time applying various techniques to determine a suitable curve to fit the K-surface, I eventually found myself back at square one. I ended up fitting an exponential decay function again, though this time the K-surface data I had developed was a far better source for optimisation compared to my last set, where I hadn't parameterised the season as well. For reference, the last time I optimised the function was about 40 minutes before opening round in Sydney.  
+
+After optimisation, plotting back over the top of the contour map we can see that this new optimisation is vastly closer to the optimal ‘minimal’ contour of the K-surface.
+
+```{python}
+#| fig-width: 6
+#| fig-height: 5
+#| fig-align: "center"
+#| dpi: 150
+k_surface = pd.read_csv("data/K_surfacev1.csv")
+#setup for plotting
+k_surface = np.array(k_surface)
+X,Y,Z = k_surface[:,1], k_surface[:,2],k_surface[:,3]
+
+xi_vals = np.linspace(X.min(), X.max(), 100)
+yi_vals = np.linspace(Y.min(), Y.max(), 100)
+xi, yi = np.meshgrid(xi_vals, yi_vals)
+zi = griddata((X, Y), Z, (xi, yi), method='cubic')
+
+# Create figure
+plt.figure(figsize=(10, 8))
+
+# Plot filled contour
+contour = plt.contourf(xi, yi, zi, levels=20, cmap='plasma')
+# Overlay contour lines
+plt.contour(xi, yi, zi, levels=20, colors='black', linewidths=0.5)
+
+# Add colorbar
+plt.colorbar(contour, label='MAE')
+
+# Plot exponential function: y = exp(-3.75 * x)
+x_exp = np.linspace(0, 1, 500) #prop gone
+y_exp = np.exp(-3.75 * x_exp) #K-Calculated
+plt.plot(x_exp, y_exp, color='red', linewidth=2, label='Old Exponential Decay')
+
+y_new = 0.2637*np.exp(-5.3410 * x_exp) + 0.1541 #K-Calculated
+plt.plot(y_new, x_exp, color='teal', linewidth=2, label='New Exponential Decay')
+
+
+# Axis labels and title
+plt.xlabel("K-Factor")
+plt.ylabel("Proportion of Season Gone")
+plt.title("K-Surface Contour with optimised K-function")
+plt.legend()
+#plt.axis('equal')
+plt.ylim(0,0.9)
+
+plt.show()
+```
+
+
+There are of course other approaches to determining an approximation of the contour.
+
+ The goal of an appropriate optimisation in this context is to minimise the error over a local proportion of space and also the total space. This goal is why the flat line K optimisation is ineffective; on average it works well but its accuracy over specific proportions is poor and would lead to bad calibration for game predictions. We really wanted to minimise the distance of the K-function to the average error over lots of small windows of the season in a way which minimises error across the total season. In future, I believe the best way to tackle this would be to implement a similar approach to the above using integrals and a parameterised K-surface.
+
+However, given some analysis I’ve done on the distribution of error, it seems that the new K-optimisation is within the bounds of where an optimal function would lie. Hence, I’m running with this solution for the time being since I expect to get a better return trimming error elsewhere.  
+
+# Results
+
+In all with a couple of other minor refinements this change was able to bring MAE to 27.9 down from 28.4 which is a satisfying result, though error remains unsatisfactorily high. Having done some hypothesis testing on this value the reduction in error is statistically significant which is not all that surprising. 
+
+We can also now compare the results to the original version of the model, below are plots of each team’s combined ratings under each version of the model. It’s obvious that the K-value wasn’t quite right before just by looking at some of the extreme movements in rating.
+
+```{python}
+    comparison = pd.read_csv('data/ODELO_Version_Comparison_Output.csv')
+
+    good_names = {
+        "combined_v1": "Old Combined",
+        "combined_v2": "New Combined",
+        "orating_v1": "Old Offensive",
+        "orating_v2": "Offensive",
+        "drating_v1": "Old Defensive",
+        "drating_v2": "Defensive",
+    }
+
+    s1 = "combined_v1"
+    s2 = "combined_v2"
+
+    # Create figure with 6 wide × 3 deep (18 subplots)
+    fig, axes = plt.subplots(3, 6, figsize=(18, 9), sharex=True, sharey=True)
+
+    # Flatten axes into a 1D array for easy looping
+    axes_flat = axes.flatten()
+
+    for ax, team in zip(axes_flat,sorted(comparison["team"].unique())):
+        
+        # Example filtering: adjust for your own logic
+        subset = comparison[comparison["team"] == team]  
+        # Plot two series (replace with your actual column names)
+        ax.plot(subset["round"], subset[s1], label=f"{good_names[s1]}")
+        ax.plot(subset["round"], subset[s2], label=f"{good_names[s2]}")
+        
+        ax.set_title(f"{team}", fontsize=10)
+        ax.grid(True, alpha=0.3)
+
+    handles, labels = axes_flat[0].get_legend_handles_labels()
+
+    fig.supxlabel("Round Number", fontsize=14)
+    fig.supylabel("Rating", fontsize=14)
+
+    fig.suptitle(f"{good_names[s1]} and {good_names[s2]} Ratings Through 2025 Season", fontsize=16)
+    fig.legend(
+        handles,labels,
+        loc = "upper left",
+        bbox_to_anchor=(0.01, 0.98),
+        ncol =2,
+        fontsize = 12
+    )
+
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+
+
+
+```
+
+Finally, the ratings plots for 2025. Which shows us visually some of the stories from the year, Collingwood’s peak and decline into the end of the year, The bulldogs very mediocre defence, the fusion of Hawthorn’s back 6, Geelong’s offensive improvement into the end of the season. And also… Brisbane was pretty good.
+
+```{python}
+    comparison = pd.read_csv('data/ODELO_Version_Comparison_Output.csv')
+
+    good_names = {
+        "combined_v1": "Old Combined",
+        "combined_v2": "New Combined",
+        "orating_v1": "Old Offensive",
+        "orating_v2": "Offensive",
+        "drating_v1": "Old Defensive",
+        "drating_v2": "Defensive",
+    }
+
+    s1 = "orating_v2"
+    s2 = "drating_v2"
+
+    # Create figure with 6 wide × 3 deep (18 subplots)
+    fig, axes = plt.subplots(3, 6, figsize=(18, 9), sharex=True, sharey=True)
+
+    # Flatten axes into a 1D array for easy looping
+    axes_flat = axes.flatten()
+
+    for ax, team in zip(axes_flat,sorted(comparison["team"].unique())):
+        
+        # Example filtering: adjust for your own logic
+        subset = comparison[comparison["team"] == team]  
+        # Plot two series (replace with your actual column names)
+        ax.plot(subset["round"], subset[s1], label=f"{good_names[s1]}")
+        ax.plot(subset["round"], subset[s2], label=f"{good_names[s2]}")
+        
+        ax.set_title(f"{team}", fontsize=10)
+        ax.grid(True, alpha=0.3)
+
+    handles, labels = axes_flat[0].get_legend_handles_labels()
+
+    fig.supxlabel("Round Number", fontsize=14)
+    fig.supylabel("Rating", fontsize=14)
+
+    fig.suptitle(f"{good_names[s1]} and {good_names[s2]} Ratings Through 2025 Season", fontsize=16)
+    fig.legend(
+        handles,labels,
+        loc = "upper left",
+        bbox_to_anchor=(0.01, 0.98),
+        ncol =2,
+        fontsize = 12
+    )
+
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+
+```
+
+
+[^1]: At least for this model I’d like a high degree of explainability
+[^2]: For the optimisation I’ve applied only continuity is required, but I believe this property is reasonable to assume
+[^3]: I wrote this before the addition of wildcard round and feel even more sure about it now

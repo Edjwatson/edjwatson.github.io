@@ -193,7 +193,6 @@ plt.tight_layout()
 plt.show()
 ```
 
-
 ### Regression to mean
 
 To account for inter-season effects, it is helpful to shift teams back towards the mean, this accounts well for several small effects which are hard to quantify on their own but clearly have an effect on the game, for example teams which finish a season on a hot run tend to come back to reality as other teams study their gameplan. 
