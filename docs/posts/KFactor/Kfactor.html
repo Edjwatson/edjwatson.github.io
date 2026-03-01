@@ -213,7 +213,7 @@ window.Quarto = {
 <section id="the-k-surface" class="level1">
 <h1>The K-surface</h1>
 <p>The biggest indicator for me that improvement was needed for the K parameter was that the average error in the front and back halves of the season were fairly far off the actual average, with a slight skew towards the end of the season. To visualise this, I ran a few thousand iterations of the model with pairs of the form (k-factor, season proportion) as variables. After we run the model and calculate the error we interpolate tuples of (k-value, proportion, error) which gives a visually appealing plot of what I’ve nicknamed the K-surface, an error surface in terms of k-value and season proportion.</p>
-<div id="d3a7720d" class="cell" data-dpi="150" data-fig-height="5" data-fig-width="6" data-execution_count="2">
+<div id="bdbccd90" class="cell" data-dpi="150" data-fig-height="5" data-fig-width="6" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -223,7 +223,7 @@ window.Quarto = {
 </div>
 </div>
 <p>This comes with an accompanying and more readable contour map. Where plotting the current K functions over the top along with the optimal constant K, its clear that the current function in the model is unsatisfactory.</p>
-<div id="82b151df" class="cell" data-dpi="150" data-fig-height="5" data-fig-width="6" data-execution_count="3">
+<div id="86cf07d7" class="cell" data-dpi="150" data-fig-height="5" data-fig-width="6" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -240,7 +240,7 @@ window.Quarto = {
 <p>To optimise I bucketed proportions of the season into groups of proportions to account for the differing proportions caused by different season lengths to attain a greater sample size and avoid over fit.</p>
 <p>After spending quite a bit of time applying various techniques to determine a suitable curve to fit the K-surface, I eventually found myself back at square one. I ended up fitting an exponential decay function again, though this time the K-surface data I had developed was a far better source for optimisation compared to my last set, where I hadn’t parameterised the season as well. For reference, the last time I optimised the function was about 40 minutes before opening round in Sydney.</p>
 <p>After optimisation, plotting back over the top of the contour map we can see that this new optimisation is vastly closer to the optimal ‘minimal’ contour of the K-surface.</p>
-<div id="3c004e5d" class="cell" data-dpi="150" data-fig-height="5" data-fig-width="6" data-execution_count="4">
+<div id="51cc628e" class="cell" data-dpi="150" data-fig-height="5" data-fig-width="6" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -257,7 +257,7 @@ window.Quarto = {
 <h1>Results</h1>
 <p>In all with a couple of other minor refinements this change was able to bring MAE to 27.9 down from 28.4 which is a satisfying result, though error remains unsatisfactorily high. Having done some hypothesis testing on this value the reduction in error is statistically significant which is not all that surprising.</p>
 <p>We can also now compare the results to the original version of the model, below are plots of each team’s combined ratings under each version of the model. It’s obvious that the K-value wasn’t quite right before just by looking at some of the extreme movements in rating.</p>
-<div id="133838a3" class="cell" data-execution_count="5">
+<div id="1cb3c5e2" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -267,7 +267,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Finally, the ratings plots for 2025. Which shows us visually some of the stories from the year, Collingwood’s peak and decline into the end of the year, The bulldogs very mediocre defence, the fusion of Hawthorn’s back 6, Geelong’s offensive improvement into the end of the season. And also… Brisbane was pretty good.</p>
-<div id="24042c5e" class="cell" data-execution_count="6">
+<div id="0282153f" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

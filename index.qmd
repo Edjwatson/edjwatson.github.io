@@ -193,11 +193,11 @@ to_widget(
                                         class_="card-style",
                                     ),
                                     tags.p(
-                                        "The predictions card shows the expected result fpr each game in the next round. The expected winner is highlighted in green. Margins and win probability are stated from the home team’s perspective.",
+                                        "The predictions card shows the expected result for each game in the next round. The expected winner is highlighted in green. Margins and win probability are stated from the home team’s perspective.",
                                         class_="card-style",
                                     ),
                                     tags.p(
-                                        "Latest ratings shows the model's internal ranking of teams. Ratings are used to generate the margin predictions each week and are updated after each round.",
+                                        "Latest Ratings shows the model's internal ranking of teams. Ratings are used to generate the margin predictions each week and are updated after each round.",
                                         class_="card-style",
                                     ),
                                     tags.p(
