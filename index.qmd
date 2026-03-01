@@ -18,6 +18,9 @@ from htmltools import tags
 import pandas as pd
 from mizani.palettes import gradient_n_pal
 import numpy as np
+import glob
+import re
+import os
 
 # Theme and CSS
 options.theme = Theme(
@@ -37,8 +40,23 @@ team_abbreviations = {
     'St Kilda': 'STK', 'Sydney': 'SYD', 'West Coast': 'WCE', 'Western Bulldogs': 'WB'
 }
 
+# File discovery
+def get_round_number(filepath):
+    match = re.search(r'blog_round_(\d+)', os.path.basename(filepath))
+    return int(match.group(1)) if match else -1
+
+pred_files = [f for f in glob.glob('data/blog_round_*.csv') if not f.endswith('_ratings.csv')]
+pred_file = max(pred_files, key=get_round_number)
+
+rating_files = glob.glob('data/blog_round_*_ratings.csv')
+rating_file = max(rating_files, key=get_round_number)
+
+round_number = get_round_number(pred_file)
+pred_title = f"Predictions for Round {round_number}"
+ratings_title = f"Round {round_number} Ratings"
+
 # Predictions data
-predictions = pd.read_csv('data/predictions.csv')
+predictions = pd.read_csv(pred_file)
 
 def fmt_image(ci: CellInfo):
     team = ci.value
@@ -106,7 +124,7 @@ pred_table = Reactable(
 )
 
 # Ratings table
-ladder = pd.read_csv('data/ratings.csv')
+ladder = pd.read_csv(rating_file)
 ladder = ladder[['team', 'combined', 'orating', 'drating']].round(1)
 pal = gradient_n_pal(['#ffd864','#ffffff', '#66a558'])
 
@@ -155,7 +173,7 @@ to_widget(
                     [
                         tags.div(
                             [
-                                tags.h2("Grand Final Prediction", style="text-align: center; font-size: 32px; margin: 0; padding-top: 8.5px"),
+                                tags.h2(pred_title, style="text-align: center; font-size: 32px; margin: 0; padding-top: 8.5px"),
                                 pred_table
                             ],
                             class_="prediction-box"
@@ -204,7 +222,7 @@ to_widget(
                     [
                         tags.div(
                             [
-                                tags.h2("Latest Ratings", style="text-align: center; font-size: 32px; margin: 0; padding-top: 8.5px"),
+                                tags.h2(ratings_title, style="text-align: center; font-size: 32px; margin: 0; padding-top: 8.5px"),
                                 rating_table
                             ],
                             class_="rating-box"

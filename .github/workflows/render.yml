@@ -1,0 +1,39 @@
+name: Render and Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/blog_round_*.csv'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Render index
+        run: quarto render index.qmd
+
+      - name: Commit and push updated docs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html
+          git diff --staged --quiet || git commit -m "chore: auto-render Round $(ls data/blog_round_*.csv | grep -v ratings | sort -V | tail -1 | grep -oP '\d+')"
+          git push

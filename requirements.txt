@@ -1,0 +1,5 @@
+reactable
+pandas
+mizani
+htmltools
+numpy
