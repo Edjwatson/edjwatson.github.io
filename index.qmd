@@ -113,7 +113,7 @@ pred_table = Reactable(
         "Away": Column(cell=fmt_image, style={"font-weight": "bold", "border-right": "1px solid #eee"},header_style={"text-align": "center"}),
         "Margin": Column(
             name="Margin",
-            cell=lambda ci: f"{int(np.ceil(ci.value)) if ci.value < 0 else int(np.floor(ci.value))}"  # Custom rounding logic and remove decimal
+            cell=lambda ci: f"{int(np.ceil(ci.value)) if ci.value < 0 else int(np.round(ci.value))}"  # Custom rounding logic and remove decimal
         , style ={"text-align": "center"},header_style= {"text-align": "center"}),
         "Prob": Column(name="Probability",
             cell=lambda ci: f"{ ci.value * 100:.0f}%",style ={"text-align": "center"}, header_style={"text-align": "center"})
@@ -193,7 +193,7 @@ to_widget(
                                         class_="card-style",
                                     ),
                                     tags.p(
-                                        "The predictions card shows the expected result for each game in the next round. The expected winner is highlighted in green. Margins and win probability are stated from the home team’s perspective.",
+                                        "The predictions card shows the expected result for each game in the next round. The expected winner is highlighted in green. Margins and win probability are stated from the home team’s perspective, these are rounded for presentation which can make the numbers appear slightly odd at times.",
                                         class_="card-style",
                                     ),
                                     tags.p(
