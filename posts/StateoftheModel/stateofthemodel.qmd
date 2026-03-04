@@ -2,7 +2,7 @@
 title: "State of the Model Address"
 date: "2026-3-11"
 categories: [Footy,ODELO, Model updates, Optimisation,PlayOn]
-description: "Improving the optimisation of the K-factor"
+description: "What to expect on HGR in 2026"
 execute:
     echo: False
     code-tools: True
