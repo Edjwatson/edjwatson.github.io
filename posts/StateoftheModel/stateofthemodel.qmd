@@ -7,7 +7,7 @@ execute:
     echo: False
     code-tools: True
     warning: False
-image: ""
+image: "average_HGA.png"
 jupyter: systempy
 
 ---
