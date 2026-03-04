@@ -2,6 +2,7 @@
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/StateoftheModel/stateofthemodel.html",
       "/posts/KFactor/Kfactor.html",
       "/posts/Intro/Introduction.html"
     ]

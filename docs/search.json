@@ -28,11 +28,46 @@
     "text": "Favourite Resources\nA collection of resources that I’ve found helpful in the process of developing my model.\n\nMatter Of Stats\nWheelo Ratings\nAFL Lab"
   },
   {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Posts",
+    "objectID": "posts/StateoftheModel/stateofthemodel.html",
+    "href": "posts/StateoftheModel/stateofthemodel.html",
+    "title": "State of the Model Address",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nThe K-Surface\n\n\nImproving the optimisation of the K-factor\n\n\n\nNov 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Well it’s Round 0 eve, and I’m excited to be back for another year. In this post I dive into what you can expect to be posted on the blog this year and a summary of what goes into the model this year."
+  },
+  {
+    "objectID": "posts/StateoftheModel/stateofthemodel.html#odelo",
+    "href": "posts/StateoftheModel/stateofthemodel.html#odelo",
+    "title": "State of the Model Address",
+    "section": "ODELO",
+    "text": "ODELO\nODELO remains functionally the same as last year, you can read more about it here. I’ve mainly made improvements to optimisation which has reduced error slightly, namely K-factor, which was previously a bit of a hack job, but you can read more about that in this post link here."
+  },
+  {
+    "objectID": "posts/StateoftheModel/stateofthemodel.html#home-ground-advantage-hga",
+    "href": "posts/StateoftheModel/stateofthemodel.html#home-ground-advantage-hga",
+    "title": "State of the Model Address",
+    "section": "Home Ground Advantage (HGA)",
+    "text": "Home Ground Advantage (HGA)\nAn exciting addition to the model this year is the addition of home ground advantage. You can expect a more detailed analysis of home ground advantage some time this season, but in brief, has been modelled using a walk forward multiple regression.\nIn keeping with Matter of Stats convention, the HGA is more akin to a venue advantage, given the idiosyncrasies of home and away status for teams. Nonetheless the listed home team retains a home ground advantage in 82% of games. Exceptions to this rule are what you might expect, for example Collingwood away at the MCG.\nThe average HGA values for 2024-2025 are in the table below, note that the HGA is dependent on opponent so these values are intended only as a summary."
+  },
+  {
+    "objectID": "posts/StateoftheModel/stateofthemodel.html#playon-player-based-modelling",
+    "href": "posts/StateoftheModel/stateofthemodel.html#playon-player-based-modelling",
+    "title": "State of the Model Address",
+    "section": "PlayOn – Player Based Modelling",
+    "text": "PlayOn – Player Based Modelling\nAnother exciting addition this year is a new model I’m calling PlayOn, a solution to modelling players. The goal of this model is to forecast a player’s AFL rating points in a game, since the difference of the sums of each team’s ratings is highly correlated with the margin. This model is still a work in progress but is based on a player’s form over their career. Ratings are then standardised by position using a value over replacement calculation, that is how much better a player is than an average player at their position.\nThis rating system lacks some key adjustments which will be the target of future improvements. Ratings haven’t been standardised for time, so ratings haven’t been decayed since a player’s last game, hence ratings tend to be inflated for player’s who did not play finals or those who were flying high before an injury (see Nic Martin). Positional adjustment is also a vulnerability given the dynamic natuer of modern positions, regardless, a starts a start.\nAs it stands though the top 5 rated players as of the end of 2025 are:\n\n\n\n\n\n\n\n\n\n\n\n\nTable 1: Top 5 Player Ratings (End of 2025)\n\n\n\n\n\nPlayer\nTeam\nRating\n\n\n\n\nNasiah W-Milera\nSt Kilda\n44.05\n\n\nNick Daicos\nCollingwood\n41.84\n\n\nNicholas Martin\nEssendon\n39.17\n\n\nJack Sinclair\nSt Kilda\n28.38\n\n\nBrodie Grundy\nSydney\n27.88\n\n\n\n\n\n\n\n\n\n\nAt the moment PlayOn works best as a sort of directional correction when key players are missing from lineups or for significant personnel change between seasons, and is run independently of ODELO.\nI look forward to exploring player modelling more this year as I’ve been inspired by other sports’ player ratings systems, in particular NBA’s DARKO."
+  },
+  {
+    "objectID": "posts/Intro/Introduction.html",
+    "href": "posts/Intro/Introduction.html",
+    "title": "Understanding ODELO",
+    "section": "",
+    "text": "Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements."
+  },
+  {
+    "objectID": "posts/Intro/Introduction.html#footnotes",
+    "href": "posts/Intro/Introduction.html#footnotes",
+    "title": "Understanding ODELO",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nI’ve taken this scoring shots terminology from Matter of Stats.↩︎\nThis is the explainer for the Xscore calculations I use.↩︎\nMAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.↩︎\nThis article explains the observed correlation between win probability and expected margin and totals.↩︎"
   },
   {
     "objectID": "posts/KFactor/Kfactor.html",
@@ -49,17 +84,10 @@
     "text": "Footnotes\n\n\nAt least for this model I’d like a high degree of explainability↩︎\nFor the optimisation I’ve applied only continuity is required, but I believe this property is reasonable to assume↩︎\nI wrote this before the addition of wildcard round and feel even more sure about it now↩︎"
   },
   {
-    "objectID": "posts/Intro/Introduction.html",
-    "href": "posts/Intro/Introduction.html",
-    "title": "Understanding ODELO",
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Posts",
     "section": "",
-    "text": "Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements."
-  },
-  {
-    "objectID": "posts/Intro/Introduction.html#footnotes",
-    "href": "posts/Intro/Introduction.html#footnotes",
-    "title": "Understanding ODELO",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nI’ve taken this scoring shots terminology from Matter of Stats.↩︎\nThis is the explainer for the Xscore calculations I use.↩︎\nMAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.↩︎\nThis article explains the observed correlation between win probability and expected margin and totals.↩︎"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nState of the Model Address\n\n\nImproving the optimisation of the K-factor\n\n\n\nMar 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe K-Surface\n\n\nImproving the optimisation of the K-factor\n\n\n\nNov 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
