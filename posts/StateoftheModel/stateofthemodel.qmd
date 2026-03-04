@@ -1,6 +1,6 @@
 ---
 title: "State of the Model Address"
-date: "2026-3-11"
+date: "2026-3-4"
 categories: [Footy,ODELO, Model updates, Optimisation,PlayOn]
 description: "What to expect on HGR in 2026"
 execute:
