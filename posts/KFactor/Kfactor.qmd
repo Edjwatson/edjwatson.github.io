@@ -43,8 +43,11 @@ After a prolonged break (uni and full time work keeps you quite busy it turns ou
 In approaching the problem of K-factor optimisation I set out with some initial assumptions. These assumptions provide some constraints to aid in optimisation as well as fulfilling logical properties we’d expect of the season.[^1] 
 
 Assumed properties of the K-function:
+
 1. K-factor is a function of the proportion of the season gone
+
 2. The function is smooth[^2]
+
 3. The function is non-increasing
 
 In simpler terms, the weighting given to a team’s performance should be continuous.
