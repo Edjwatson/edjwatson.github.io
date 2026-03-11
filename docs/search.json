@@ -84,10 +84,24 @@
     "text": "Footnotes\n\n\nAt least for this model I’d like a high degree of explainability↩︎\nFor the optimisation I’ve applied only continuity is required, but I believe this property is reasonable to assume↩︎\nI wrote this before the addition of wildcard round and feel even more sure about it now↩︎"
   },
   {
+    "objectID": "posts/The First Sample Size/thefirstsamplesize.html",
+    "href": "posts/The First Sample Size/thefirstsamplesize.html",
+    "title": "The First Sample Size",
+    "section": "",
+    "text": "A beautiful view of the SCG before Thursday nights game\nCal Twomey penned this article today over on the AFL site . The article makes the point that the AFL’s new rule changes have already achieved their goal in reducing quarter lengths. This is despite only 20 quarters having been played across the 5 opening round games.\nThe AFL’s statistical illiteracy has been much derided on footy twitter and this article is no exception. To be generous to Twomey he seems aware that the sample size is very small, however, it is still far too small a sample size to draw any conclusions. To illustrate the point, I want to prove through a hypothesis test that the shorter quarters this week tell us little to nothing about whether the underlying distribution of quarter lengths has changed."
+  },
+  {
+    "objectID": "posts/The First Sample Size/thefirstsamplesize.html#footnotes",
+    "href": "posts/The First Sample Size/thefirstsamplesize.html#footnotes",
+    "title": "The First Sample Size",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nFetched via the fitzroy API.↩︎\nThis sample size is still on the lower side, but given the article only compares to 2025 I want to restrict my analysis to it.↩︎"
+  },
+  {
     "objectID": "posts/index.html",
     "href": "posts/index.html",
     "title": "Posts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nState of the Model Address\n\n\nWhat to expect on HGR in 2026\n\n\n\nMar 4, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe K-Surface\n\n\nImproving the optimisation of the K-factor\n\n\n\nNov 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nThe First Sample Size\n\n\nWere opening round quarters really shorter\n\n\n\nMar 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nState of the Model Address\n\n\nWhat to expect on HGR in 2026\n\n\n\nMar 4, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe K-Surface\n\n\nImproving the optimisation of the K-factor\n\n\n\nNov 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
