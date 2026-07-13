@@ -1,6 +1,6 @@
 ---
 title: "Season Simulations"
-subtitle: "Updated at the end of Round 17"
+subtitle: "Updated at the end of Round 18"
 format: html
 execute:
     echo: false

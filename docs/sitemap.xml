@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://holygrailratings.com/about.html</loc>
-    <lastmod>2026-07-11T04:37:20.448Z</lastmod>
+    <loc>https://holygrailratings.com/simulations.html</loc>
+    <lastmod>2026-07-13T11:32:25.092Z</lastmod>
   </url>
   <url>
-    <loc>https://holygrailratings.com/posts/StateoftheModel/stateofthemodel.html</loc>
-    <lastmod>2026-07-11T04:37:20.535Z</lastmod>
-  </url>
-  <url>
-    <loc>https://holygrailratings.com/posts/Intro/Introduction.html</loc>
-    <lastmod>2026-07-11T04:37:20.528Z</lastmod>
-  </url>
-  <url>
-    <loc>https://holygrailratings.com/posts/KFactor/Kfactor.html</loc>
-    <lastmod>2026-07-11T04:37:20.531Z</lastmod>
-  </url>
-  <url>
-    <loc>https://holygrailratings.com/posts/The First Sample Size/thefirstsamplesize.html</loc>
-    <lastmod>2026-07-11T04:37:20.562Z</lastmod>
+    <loc>https://holygrailratings.com/index.html</loc>
+    <lastmod>2026-07-13T11:29:22.114Z</lastmod>
   </url>
   <url>
     <loc>https://holygrailratings.com/posts/index.html</loc>
     <lastmod>2026-07-11T04:37:20.562Z</lastmod>
   </url>
   <url>
-    <loc>https://holygrailratings.com/index.html</loc>
-    <lastmod>2026-07-12T11:47:40.778Z</lastmod>
+    <loc>https://holygrailratings.com/posts/The First Sample Size/thefirstsamplesize.html</loc>
+    <lastmod>2026-07-11T04:37:20.562Z</lastmod>
+  </url>
+  <url>
+    <loc>https://holygrailratings.com/posts/KFactor/Kfactor.html</loc>
+    <lastmod>2026-07-11T04:37:20.531Z</lastmod>
+  </url>
+  <url>
+    <loc>https://holygrailratings.com/posts/Intro/Introduction.html</loc>
+    <lastmod>2026-07-11T04:37:20.528Z</lastmod>
+  </url>
+  <url>
+    <loc>https://holygrailratings.com/posts/StateoftheModel/stateofthemodel.html</loc>
+    <lastmod>2026-07-11T04:37:20.535Z</lastmod>
+  </url>
+  <url>
+    <loc>https://holygrailratings.com/about.html</loc>
+    <lastmod>2026-07-11T04:37:20.448Z</lastmod>
   </url>
 </urlset>
