@@ -184,15 +184,28 @@ max-height: 75px;
 }
 
 .prediction-box h2,
-.rating-box h2 {
+.rating-box h2,
+.table-card h2 {
     border-bottom: none;
     box-shadow: none;
+    margin-top: 0;
     margin-bottom: 10px;
     font-family: 'Editorial New Regular'
 }
 
+.table-card {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    overflow: visible;
+}
+
 .prediction-box,
-.rating-box {
+.rating-box,
+.table-card {
   font-family: 'PPFormula';
   font-size: 16px;
   color: #222;
@@ -216,6 +229,97 @@ max-height: 75px;
   vertical-align: middle !important;
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.sim-tbl {
+  font-size: 14px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
+  padding: 6px;
+
+  .rt-th, .rt-td {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    display: flex;
+    align-items: center;
+  }
+
+  .rt-th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .rt-td-inner {
+    padding: 1px 4px !important;
+    line-height: 1 !important;
+  }
+
+  .rt-th-inner {
+    padding: 2px 4px !important;
+    line-height: 1.2 !important;
+  }
+
+  .rt-tr-group-header, .rt-th-group, .rt-th-group-none {
+    border: none !important;
+  }
+}
+
+.lad-tbl {
+  font-size: 14px;
+}
+
+.page-layout-custom #title-block-header {
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-bottom: 4px;
+
+  + .cell {
+    padding-top: 0;
+  }
+
+  .subtitle {
+    color: #888888;
+  }
+}
+
+.panel-tabset > .nav-tabs {
+  border-bottom: none;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  .nav-link {
+    background-color: #ffffff;
+    border: 1px solid $green !important;
+    color: $green !important;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-family: 'PPFormula', sans-serif;
+    font-size: 14px;
+    font-weight: 500 !important;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f1f6ee;
+      font-weight: 500 !important;
+      isolation: auto;
+    }
+  }
+
+  .nav-link.active {
+    background-color: $green !important;
+    color: #ffffff !important;
+
+    &:hover {
+      background-color: $green;
+    }
+  }
 }
 
 .card-style{

@@ -21,6 +21,7 @@ import numpy as np
 import glob
 import re
 import os
+from _tables import team_cell
 
 # Theme and CSS
 options.theme = Theme(
@@ -30,15 +31,6 @@ options.theme = Theme(
     select_style={"background-color": "hsl(233, 9%, 25%)"},
 )
 embed_css()
-
-# Abbreviations
-team_abbreviations = {
-    'Adelaide': 'ADE', 'Brisbane Lions': 'BRI', 'Carlton': 'CAR', 'Collingwood': 'COL',
-    'Essendon': 'ESS', 'Fremantle': 'FRE', 'Geelong': 'GEE', 'Gold Coast': 'GC',
-    'Greater Western Sydney': 'GWS', 'Hawthorn': 'HAW', 'Melbourne': 'MEL',
-    'North Melbourne': 'NM', 'Port Adelaide': 'PORT', 'Richmond': 'RIC',
-    'St Kilda': 'STK', 'Sydney': 'SYD', 'West Coast': 'WCE', 'Western Bulldogs': 'WB'
-}
 
 # File discovery
 def get_round_number(filepath):
@@ -58,59 +50,11 @@ ratings_title = f"Round {round_number} Ratings"
 # Predictions data
 predictions = pd.read_csv(pred_file)
 
-def fmt_image(ci: CellInfo):
-    team = ci.value
-    row = predictions[
-        (predictions['Home'] == team) | (predictions['Away'] == team)
-    ].iloc[0]
-    is_winner = (
-        (row['Home'] == team and row['Margin'] > 0) or
-        (row['Away'] == team and row['Margin'] < 0)
-    )
-    abbreviated_team = team_abbreviations.get(team, team)
-    
-    image = htmltools.img(
-        src=f"assets/clubicons/{team}-40.png",
-        style="height: 24px; vertical-align: middle;",
-        alt=abbreviated_team,
-    )
-
-    # Always apply span shift to the text
-    text_span = htmltools.span(
-        abbreviated_team,
-        style="position: relative; top: 2px;"
-    )
-
-    # Apply bubble style conditionally
-    if is_winner:
-        name_div = htmltools.div(
-            text_span,
-            style=(
-                "display: inline-block; margin-left: 6px; padding: 2px 6px; "
-                "border-radius: 6px; line-height: 1.2; vertical-align: middle; "
-                "background-color: #e8f3c3;"
-            )
-        )
-    else:
-        name_div = htmltools.div(
-            text_span,
-            style=(
-                "display: inline-block; margin-left: 6px; line-height: 1.2;"
-            )
-        )
-
-    return htmltools.TagList(
-        htmltools.div(
-            [image, name_div],
-            style="display: flex; align-items: center; gap: 4px;"
-        )
-    )
-
 pred_table = Reactable(
     predictions[['Home', 'Away', 'Venue', 'Margin', 'Prob']],
     columns={
-        "Home": Column(cell=fmt_image, style={"font-weight": "bold"},header_style={"text-align": "center"}),
-        "Away": Column(cell=fmt_image, style={"font-weight": "bold", "border-right": "1px solid #eee"},header_style={"text-align": "center"}),
+        "Home": Column(cell=team_cell(predictions), style={"font-weight": "bold"},header_style={"text-align": "center"}),
+        "Away": Column(cell=team_cell(predictions), style={"font-weight": "bold", "border-right": "1px solid #eee"},header_style={"text-align": "center"}),
         "Margin": Column(
             name="Margin",
             cell=lambda ci: f"{int(np.ceil(ci.value)) if ci.value < 0 else int(np.round(ci.value))}"  # Custom rounding logic and remove decimal
@@ -128,18 +72,6 @@ ladder = pd.read_csv(rating_file)
 ladder = ladder[['team', 'combined', 'orating', 'drating']].round(1)
 pal = gradient_n_pal(['#ffd864','#ffffff', '#66a558'])
 
-def fmt_image_team(ci: CellInfo):
-    team = ci.value
-    abbreviated_team = team_abbreviations.get(team, team)
-    return htmltools.TagList(
-        htmltools.div([
-            htmltools.img(src=f"assets/clubicons/{team}-40.png",
-                          style="height: 24px; vertical-align: middle;",
-                          alt=team),
-            htmltools.div(abbreviated_team)
-        ], style="display: flex; align-items: center; gap: 4px;")
-    )
-
 def fmt_fill(ci: CellInfo):
     if not isinstance(ci.value, float): return {}
     val_range = max(ladder[ci.column_name]) - min(ladder[ci.column_name])
@@ -152,7 +84,7 @@ rating_table = Reactable(
     default_sort_order="desc",
     default_col_def=Column(style=fmt_fill),
     columns={
-        "team": Column(name="Team", cell=fmt_image_team,style={"font-weight": "bold"}),
+        "team": Column(name="Team", cell=team_cell(),style={"font-weight": "bold"}),
         "combined": Column(name="Rating"),
         "orating": Column(name="Offence"),
         "drating": Column(name="Defence"),

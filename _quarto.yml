@@ -12,7 +12,7 @@ website:
   google-analytics: "G-Z4CE7FBC8X"
   page-footer: 
     center: 
-      - text: "Edward Watson 2025"
+      - text: "Edward Watson 2026"
 
 format:
   html:
@@ -22,3 +22,7 @@ format:
     toc: true
     page-layout: full
     mainfont: Editorial New Regular
+
+execute:
+  error: false
+  warning: false

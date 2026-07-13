@@ -1,0 +1,110 @@
+---
+title: "Season Simulations"
+subtitle: "Updated at the end of Round 17"
+format: html
+execute:
+    echo: false
+    code-tools: true
+engine: jupyter
+jupyter: python3
+page-layout: custom
+resources: assets/clubicons
+---
+
+```{python}
+#| warning: false
+#| echo: false
+from reactable import embed_css, Column, ColGroup
+from _tables import table_card, team_cell, blank_if_zero, gradient_fill
+import pandas as pd
+
+embed_css()
+df = pd.read_csv("data/Simulations/blog_summary_sims.csv", index_col=0)
+lad_df = pd.read_csv("data/Simulations/blog_ladder_distribution.csv",index_col = 0)
+
+ladder_pos_cols = ['Top 4',"Top 6","Top 10","Spooners"]
+finals_cols = [
+    "Premiers","Runner up","Prelim","Semi Final","Elim Final","Wildcard"
+]
+pos_cols = [f"{i}" for i in range(1,19)]
+
+df.rename(columns={
+    "Avg_Wins": "Exp Wins",
+    "Avg_Ladder_Position": "Exp Ladder",
+}, inplace=True)
+
+GROUP_BORDER = "2px solid #cccccc"
+SIM_PALETTE = ('#ffffff', '#F1F6DD', '#e8f3c3')
+
+sim_columns = {
+    "Team": Column(cell=team_cell(), style={"font-weight": "bold"}),
+    "Exp Wins": Column(width=120, align="center"),
+    "Exp Ladder": Column(width=150, align="center"),
+    **{c: Column(
+           cell=blank_if_zero(digits=2, suffix="%"), align="center",
+           style=gradient_fill(df, palette=SIM_PALETTE, extra={"border-left": GROUP_BORDER} if c == ladder_pos_cols[0] else None),
+       ) for c in ladder_pos_cols},
+    **{c: Column(
+           cell=blank_if_zero(digits=2, suffix="%"), align="center",
+           style=gradient_fill(df, palette=SIM_PALETTE, extra={"border-left": GROUP_BORDER} if c == finals_cols[0] else None),
+       ) for c in finals_cols},
+}
+
+sim_column_groups = [
+    ColGroup(name="Ladder Position Probabilities", columns=ladder_pos_cols),
+    ColGroup(name="Finals Outcome Probabilities", columns=finals_cols),
+]
+
+ladder_columns = {
+    "Team": Column(cell=team_cell(), style={"font-weight": "bold"}, width=120),
+    **{c: Column(
+           cell=blank_if_zero(digits=2, suffix="%"), align="center", width=95.5,
+           style=gradient_fill(lad_df, palette=SIM_PALETTE, extra={"border-left": GROUP_BORDER} if c == pos_cols[0] else None),
+       ) for c in pos_cols},
+}
+
+```
+
+::: {.panel-tabset}
+
+## Summary
+
+```{python}
+#| echo: false
+table_card(
+    df, style={"text-align": "left"}, class_="sim-tbl",
+    columns=sim_columns, column_groups=sim_column_groups,
+    pagination=False, compact=True,
+)
+```
+
+## Ladder Distribution
+
+```{python}
+#| echo: false
+table_card(
+    lad_df, style={"text-align": "left"}, class_="lad-tbl",
+    columns=ladder_columns,
+    pagination=False, compact=True,
+)
+```
+
+## Finals Sims
+
+```{python}
+#| echo: false
+finals_df = df[["Team"] + finals_cols]
+table_card(
+    finals_df, style={"text-align": "left"}, class_="sim-tbl",
+    columns={
+        "Team": Column(cell=team_cell(), style={"font-weight": "bold"}),
+        **{c: Column(
+               cell=blank_if_zero(digits=2, suffix="%"), align="center",
+               style=gradient_fill(finals_df, palette=SIM_PALETTE),
+           ) for c in finals_cols},
+    },
+    pagination=False, compact=True,
+)
+```
+
+:::
