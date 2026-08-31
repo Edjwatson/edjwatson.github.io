@@ -24,7 +24,7 @@ finals_df.index.name = "Team"
 finals_df = finals_df.reset_index()
 
 finals_cols = [
-    "Premiers", "Runner up", "Prelim", "Semi Final", "Elim Final", "Wildcard"
+    "Premiers", "Runner Up", "Prelim", "Semi Final", "Elim Final", "Wildcard"
 ]
 
 SIM_PALETTE = ('#ffffff', '#F1F6DD', '#e8f3c3')
