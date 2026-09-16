@@ -44,7 +44,7 @@ rating_files = glob.glob('data/blog_round_*_ratings.csv')
 rating_file = max(rating_files, key=get_round_number)
 
 round_number = get_round_number(pred_file)
-pred_title = f"Predictions for Finals Week 2"
+pred_title = f"Predictions for Finals Week 3"
 ratings_title = f"Round {round_number} Ratings"
 
 # Predictions data
