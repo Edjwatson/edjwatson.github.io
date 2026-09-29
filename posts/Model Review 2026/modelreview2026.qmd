@@ -86,4 +86,4 @@ Finally, a big thank you to Max Barry at Squiggle.com for organising and adminis
 
 [^1]: I initially planned to include my player ratings in the model.
 [^2]: Punters is a combination of bookmakers' odds and lines.
-[^3]: The other being the outrageous 72 point line for the Dogs to beat the Dons.
+[^3]: The other being the outrageous ~74 point line for the Dogs to beat the Dons.
