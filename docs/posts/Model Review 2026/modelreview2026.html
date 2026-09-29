@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-04-30">
-<meta name="description" content="An introduction to the model I use to make predictions">
+<meta name="dcterms.date" content="2026-09-29">
+<meta name="description" content="A model wrap up for 2026">
 
-<title>Understanding ODELO – Holy Grail Ratings</title>
+<title>Model Review 2026 – Holy Grail Ratings</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
@@ -77,11 +77,11 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-Z4CE7FBC8X', { 'anonymize_ip': true});
 </script>
-<meta name="twitter:title" content="Understanding ODELO – Holy Grail Ratings">
-<meta name="twitter:description" content="An introduction to the model I use to make predictions">
-<meta name="twitter:image" content="https://holygrailratings.com/posts/Intro/Test.png">
-<meta name="twitter:image-height" content="600">
-<meta name="twitter:image-width" content="1064">
+<meta name="twitter:title" content="Model Review 2026 – Holy Grail Ratings">
+<meta name="twitter:description" content="A model wrap up for 2026">
+<meta name="twitter:image" content="https://holygrailratings.com/posts/Model Review 2026/logo7-250.png">
+<meta name="twitter:image-height" content="137">
+<meta name="twitter:image-width" content="250">
 <meta name="twitter:card" content="summary_large_image">
 </head><body><nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
@@ -113,36 +113,10 @@ gtag('config', 'G-Z4CE7FBC8X', { 'anonymize_ip': true});
       </div>
     </div>
   </div></nav>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.scss">
 
@@ -159,19 +133,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-importance-of-scoring-shots" id="toc-the-importance-of-scoring-shots" class="nav-link active" data-scroll-target="#the-importance-of-scoring-shots">The Importance of Scoring Shots</a></li>
-  <li><a href="#odelo-explainer" id="toc-odelo-explainer" class="nav-link" data-scroll-target="#odelo-explainer">ODELO Explainer</a>
-  <ul class="collapse">
-  <li><a href="#k-factor" id="toc-k-factor" class="nav-link" data-scroll-target="#k-factor">K-factor</a></li>
-  <li><a href="#regression-to-mean" id="toc-regression-to-mean" class="nav-link" data-scroll-target="#regression-to-mean">Regression to mean</a></li>
-  <li><a href="#days-to-average" id="toc-days-to-average" class="nav-link" data-scroll-target="#days-to-average">Days to average</a></li>
-  </ul></li>
-  <li><a href="#win-probability" id="toc-win-probability" class="nav-link" data-scroll-target="#win-probability">Win Probability</a></li>
-  <li><a href="#performance" id="toc-performance" class="nav-link" data-scroll-target="#performance">Performance</a></li>
-  <li><a href="#future-improvements" id="toc-future-improvements" class="nav-link" data-scroll-target="#future-improvements">Future Improvements</a>
-  <ul class="collapse">
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  </ul></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link active" data-scroll-target="#tips">Tips</a></li>
+  <li><a href="#mae" id="toc-mae" class="nav-link" data-scroll-target="#mae">MAE</a></li>
+  <li><a href="#bits" id="toc-bits" class="nav-link" data-scroll-target="#bits">Bits</a></li>
+  <li><a href="#looking-forward-to-2027" id="toc-looking-forward-to-2027" class="nav-link" data-scroll-target="#looking-forward-to-2027">Looking Forward to 2027</a></li>
   </ul>
 </nav>
     </div>
@@ -180,18 +145,18 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Understanding ODELO</h1>
+<h1 class="title">Model Review 2026</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Footy</div>
     <div class="quarto-category">ODELO</div>
-    <div class="quarto-category">Introduction</div>
-    <div class="quarto-category">Explainer</div>
+    <div class="quarto-category">Model updates</div>
+    <div class="quarto-category">Squiggle</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    An introduction to the model I use to make predictions
+    A model wrap up for 2026
   </div>
 </div>
 
@@ -202,7 +167,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 30, 2025</p>
+      <p class="date">September 29, 2026</p>
     </div>
   </div>
   
@@ -214,143 +179,308 @@ window.Quarto = {
 </header>
 
 
-<p><img src="Test.png" class="img-fluid"></p>
-<p>Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements.</p>
-<section id="the-importance-of-scoring-shots" class="level1">
-<h1>The Importance of Scoring Shots</h1>
-<p>To introduce my model for AFL margins consider one question - what is the principal component of a football game’s margin? If you asked head coaches you’d probably get a variety of answers reflecting gameplan - maybe pressure rating, uncontested marks, handball/kick ratio.</p>
-<p>My model takes a simpler view which relies on a heuristic observation about AFL, an average game has an extremely high number of interactions. A key result? Events at the extremes tend to cancel each other, for every goal conceded from an intercepted kick-in there’s a set shot from a questionable free kick.</p>
-<p>The implication for AFL is that scoring is relatively stable, extreme events tend to have a minimal effect on the final margin. What matters most then? – scoring shots, any attempt on goal, whether a major, behind or clanger <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<p>Here is a graph of every margin in comparison to the scoring shot differential, highlighting the average contribution of a scoring shot to the margin.</p>
-<div id="f299b29b" class="cell" data-execution_count="2">
+<p><img src="SquiggleBoard.png" class="img-fluid"></p>
+<p>With the grand final taking place last Saturday, my first year submitting tips to <a href="https://squiggle.com.au/">Squiggle</a> has come to an end. It was a pleasantly surprising season, with the model finishing equal first for most tips and performing well in all metrics except bits (more on that later).</p>
+<p>My intuition for why the model performed well is its heavy weighting toward Xscore, which seemed to be a good predictor of future performance this year, and a decision not to include player ratings in the Squiggle tips.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The importance of players seemed a particular red herring this year, best emphasised by the Swans, who absorbed the absence of key players with ease. In fact, of the 5 biggest differences between Squiggle’s s10 (average of last years best ten models) and the Punters<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, 4 were associated with key outs!<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div id="dd47d836" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Introduction_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>A logical question is, what about accuracy? Are the best teams more accurate and the worst more inaccurate, could good - more accurate - teams overcome scoring shot differentials? Surprisingly, teams good or bad rarely manage to outperform or underperform compared to the league average scoring shot conversion. This graph shows each teams conversion rate since 2014.</p>
-<div id="7589ea9f" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Introduction_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The key takeaway from this graph is the only short term minor deviations from the all time conversion average rate of 53%. In the data the absolute best conversion rate is around 60% and the worst around 40%. The value of a scoring shot at each rate respectively is 4.6 and 3.4, the difference being just 1.2. This means to win the absolute best converting team would require at least 2 shots for every 3 their terribly converting opponent registers. The point being even if a team converted extraordinarily well and their opponent woefully it is extremely hard to overcome scoring shot differentials.</p>
-<p>It is true however that certain shots are better than others, shots from the goal square vs centre square will have wildly different conversion rates. Thus XScore, in my model I use an excellent calculation by AFLLab which weights the value of a shot in comparison to the historical conversion rate based on its location.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> These facts about scoring shots provide the methodology for rating teams’ abiltiies in my model.</p>
-</section>
-<section id="odelo-explainer" class="level1">
-<h1>ODELO Explainer</h1>
-<p>ODELO (Offensive and Defensive Elo) is the model I use to generate team ratings. A team has two ratings, offensive and defensive, measured as the number of points better than the league average number of scoring shots converted at the average rate. Ratings in this form give us an idea of the relative strengths of teams and allows a simple comparison across teams.</p>
-<p>They also can be easily turned into predictions of the margin by comparing the number of points better an offense is than its opposing defence. To convert to margins, the amount the home offense will outscore the away defense is calculated, the defensive margin is calculated similarly and the final expected margin is their sum divided by 2.</p>
-<p><span class="math display">\[
-\text{Expected Home Offensive Margin} = \text{Home Team Offensive Rating} - \text{Away Team Defensive Rating}
-\]</span> <span class="math display">\[
-\text{Expected Home Defensive Margin} = \text{Home Team Defensive Rating} - \text{Away Team Offensive Rating}
-\]</span> <span class="math display">\[
-\text{Expected Home Margin} = \frac{\text{Expected Home Offensive Margin} + \text{Expected Home Defensive Margin}}{2}
-\]</span></p>
-<p>ODELO is an Elo system where the predicted margin is used to assess a team’s actual performance and adjust their ratings. Elo systems were developed for chess, and are a well-known technique for assessing the relative strength of teams and players in different sports. The trick to Elo systems is updating ratings, in chess two players ratings are updated after the game using this formula,</p>
-<p><span class="math display">\[
-\text{New Rating} = \text{Old Rating} + K(\text{Expected Performance} - \text{Actual Performance})
-\]</span></p>
-<p>In chess, Elo ratings are arbitrarily set such that an average player has a rating of 1500 and scaled so that a 200 point rating difference translates to a 75% win probability. In ODELO the ratings represent how many points a team is better/worse than the average score, and I have fit my own win probability function.</p>
-<p>To update ODELO ratings, I have a slightly modified formula, with several parameters. The formulas simply adjust a teams rating by the amount they outperform the average score,</p>
-<p><span class="math display">\[
-\text{New Offensive Rating} = \text{Old Offensive Rating} + K(\text{Home Expected Score} - \text{Average Score})
-\]</span> <span class="math display">\[
-\text{New Defensive Rating} = \text{Old Defensive Rating} + K(\text{Average Score} - \text{Away Expected Score})
-\]</span></p>
-<p>There are three parameters in the calculation I have optimised for, 1. K-factor 2. Regression to mean 3. Days to Average</p>
-<section id="k-factor" class="level3">
-<h3 class="anchored" data-anchor-id="k-factor">K-factor</h3>
-<p>K-factor weights a team’s actual performance compared to their expected performance and determines the size of rating changes. I use an exponentially decaying K-factor dependent on the proportion of the season passed. This reflects some obvious observations about AFL, early in the season there’s not much known about a team’s ability, there’s likely personnel change, game plan change, aging, so significant change in their rating is expected.</p>
-<p>Similarly, towards the end of the season there is more certainty around a team’s ability, the prevalence of dead rubber games in the last few rounds also gives reason to move ratings less.</p>
-<p>Currently I have lazily optimised K-factor by finding an exponential co-efficient which minimises error but is an area for improvement. The progression of the K-facotr looks like this,</p>
-<div id="b16a3e61" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Introduction_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="regression-to-mean" class="level3">
-<h3 class="anchored" data-anchor-id="regression-to-mean">Regression to mean</h3>
-<p>To account for inter-season effects, it is helpful to shift teams back towards the mean, this accounts well for several small effects which are hard to quantify on their own but clearly have an effect on the game, for example teams which finish a season on a hot run tend to come back to reality as other teams study their gameplan.</p>
-<p>Teams offensive and defensive ratings are regressed 30% in between seasons, which is a simple brute force optimisation, and reduces error significantly.</p>
-</section>
-<section id="days-to-average" class="level3">
-<h3 class="anchored" data-anchor-id="days-to-average">Days to average</h3>
-<p>This is a simple measure to account for long term changes in the average score, the average score of AFL is relatively stable, with no major short term variations with the exception of the COVID-19 afflicted 2020 season.</p>
-<div id="950ef14f" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Introduction_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Average score mainly oscillates around 85, the variation in terms of scoring shots is relatively small worth around 3 scoring shots so I’m not concerned about using the average in the model.</p>
-<p>The days to average window used to determine the average score is optimised to account for any long term systemic trends. This comes out to about 5 years.</p>
-</section>
-</section>
-<section id="win-probability" class="level1">
-<h1>Win Probability</h1>
-<p>I mentioned earlier that chess uses a set formula to convert Elo ratings into implied win probabilities, so does ODELO. I have fit a logistic regression using historical margins and the ODELO predicted margins, this returns a sigmoid coefficient. To determine win probability I use the sigmoid function as a function of the expected margin. <span class="math display">\[
-\text{Win probability} = \frac{1}{e^{-k * \text{Expected Margin}}}
-\]</span></p>
-<p>Plotting this function gives a graph showing the relationship between expected margin and win probability in ODELO.</p>
-<div id="76542023" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Introduction_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This is how win probabilities are calculated each week on the homepage.</p>
-</section>
-<section id="performance" class="level1">
-<h1>Performance</h1>
-<p>Back testing with these parameters ODELO has a mean absolute error<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> of 28.8 over 2014 – 2024. This is fairly solid given there are a number of simple improvements to be made. However in comparison with other models on <a href="https://squiggle.com.au/">Squiggle</a> where the best models tend to have an error of 22 - 27 depending on the year, there is plenty of room for improvement in ODELO.</p>
-</section>
-<section id="future-improvements" class="level1">
-<h1>Future Improvements</h1>
-<p>ODELO remains fairly crude, and I have a few improvements to work on. Most obvious is an estimate of home ground advantage, I’ve done some early research on this and plan to write a future post on it. Improving optimisation is another goal, K-factor being the main offender, given its importance to weightings I suspect any improvement will significantly improve performance. Asides from these two I have some other ideas to investigate,</p>
-<ol type="1">
-<li>A bye adjustment and more broadly a measure to account for differing amounts of rest between teams</li>
-<li>A player based model to blend with ODELO to account for injuries and individual contributions</li>
-<li>Optimising win probability based on expected total score<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
-<li>Various adjustments about team performance in finals</li>
-<li>Determine a weighting of XScore and true score, some amount of true score probably reflects a team’s ability to get good shots or perform under pressure.</li>
-</ol>
-<p>These are a few of the big things that I’m planning to add into the model which will probably take some time but are nonetheless achievable. Hopefully this gave some insight into how the predictions displayed on the home page are calculated and what exactly they represent.</p>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
-<p>In case you’re interested in how I manage the data for the model and the sources used. I have an SQL database which I populate with data sourced in python using the <a href="https://github.com/sglambert/fitzRoyPy">fitzRoypy</a> wrapper for the [fitzRoy] (https://jimmyday12.github.io/fitzRoy) API. I draw data from a few sources for forecasting but for optimising to historical data I use game data from Squiggle. I’ve also experimented with historical betting data as a way to measure error, this [dataset] (https://www.aussportsbetting.com/data/historical-afl-results-and-odds-data) is the best source I’ve been able to find but I’m on the hunt for more.</p>
 
 
+
+  <meta charset="utf-8">
+  <style>
+    
+@font-face {
+    font-family: 'PPFormula';
+    src: url('file:///Users/edwardwatson/Documents/AFLModel/fitzRoyPy-main/PlotStyles/fonts/PPFormula/PPFormulaMedium.otf') format('opentype');
+}
+
+    .afl-table-wrap { background-color: #f5eedc; font-family: 'PPFormula', sans-serif; color: #000000; padding: 30px; }
+    .afl-table-wrap h2 { font-family: 'PPFormula', sans-serif; color: #000000; font-size: 18px; font-weight: 500; margin: 0 0 16px; }
+  </style>
+
+
+  <div class="afl-table-wrap">
+    <h2 class="anchored">Punters vs s10 biggest pre-game margin differences </h2>
+    <style type="text/css">
+#T_9b823  {
+  font-family: 'PPFormula', sans-serif;
+  background-color: #f5eedc;
+  color: #000000;
+  border-collapse: collapse;
+  width: 100%;
+}
+#T_9b823 th {
+  font-family: 'PPFormula', sans-serif;
+  font-size: 13px;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #333;
+  background-color: #f5eedc;
+  color: #000000;
+}
+#T_9b823 td {
+  font-family: 'PPFormula', sans-serif;
+  font-size: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid #ccc;
+  background-color: #f5eedc;
+  color: #000000;
+}
+</style>
+
+<table id="T_9b823" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th id="T_9b823_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Round</th>
+<th id="T_9b823_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Home</th>
+<th id="T_9b823_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Away</th>
+<th id="T_9b823_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Punters margin</th>
+<th id="T_9b823_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">s10 margin</th>
+<th id="T_9b823_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">Diff</th>
+<th id="T_9b823_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">Actual margin</th>
+<th id="T_9b823_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_9b823_row0_col0" class="data row0 col0">24</td>
+<td id="T_9b823_row0_col1" class="data row0 col1">Sydney</td>
+<td id="T_9b823_row0_col2" class="data row0 col2">North Melbourne</td>
+<td id="T_9b823_row0_col3" class="data row0 col3">+1.17</td>
+<td id="T_9b823_row0_col4" class="data row0 col4">+31.01</td>
+<td id="T_9b823_row0_col5" class="data row0 col5">29.84</td>
+<td id="T_9b823_row0_col6" class="data row0 col6">+53</td>
+<td id="T_9b823_row0_col7" class="data row0 col7">Pullman 5 Out</td>
+</tr>
+<tr class="even">
+<td id="T_9b823_row1_col0" class="data row1 col0">7</td>
+<td id="T_9b823_row1_col1" class="data row1 col1">Western Bulldogs</td>
+<td id="T_9b823_row1_col2" class="data row1 col2">Sydney</td>
+<td id="T_9b823_row1_col3" class="data row1 col3">-19.83</td>
+<td id="T_9b823_row1_col4" class="data row1 col4">+2.41</td>
+<td id="T_9b823_row1_col5" class="data row1 col5">22.24</td>
+<td id="T_9b823_row1_col6" class="data row1 col6">-66</td>
+<td id="T_9b823_row1_col7" class="data row1 col7">Sam Darcy Out</td>
+</tr>
+<tr class="odd">
+<td id="T_9b823_row2_col0" class="data row2 col0">4</td>
+<td id="T_9b823_row2_col1" class="data row2 col1">Western Bulldogs</td>
+<td id="T_9b823_row2_col2" class="data row2 col2">Essendon</td>
+<td id="T_9b823_row2_col3" class="data row2 col3">+73.80</td>
+<td id="T_9b823_row2_col4" class="data row2 col4">+51.70</td>
+<td id="T_9b823_row2_col5" class="data row2 col5">22.10</td>
+<td id="T_9b823_row2_col6" class="data row2 col6">+34</td>
+<td id="T_9b823_row2_col7" class="data row2 col7"></td>
+</tr>
+<tr class="even">
+<td id="T_9b823_row3_col0" class="data row3 col0">26</td>
+<td id="T_9b823_row3_col1" class="data row3 col1">Sydney</td>
+<td id="T_9b823_row3_col2" class="data row3 col2">Brisbane Lions</td>
+<td id="T_9b823_row3_col3" class="data row3 col3">-23.70</td>
+<td id="T_9b823_row3_col4" class="data row3 col4">-3.11</td>
+<td id="T_9b823_row3_col5" class="data row3 col5">20.59</td>
+<td id="T_9b823_row3_col6" class="data row3 col6">+53</td>
+<td id="T_9b823_row3_col7" class="data row3 col7">Pullman 5 Out</td>
+</tr>
+<tr class="odd">
+<td id="T_9b823_row4_col0" class="data row4 col0">19</td>
+<td id="T_9b823_row4_col1" class="data row4 col1">Port Adelaide</td>
+<td id="T_9b823_row4_col2" class="data row4 col2">Fremantle</td>
+<td id="T_9b823_row4_col3" class="data row4 col3">-45.20</td>
+<td id="T_9b823_row4_col4" class="data row4 col4">-25.05</td>
+<td id="T_9b823_row4_col5" class="data row4 col5">20.15</td>
+<td id="T_9b823_row4_col6" class="data row4 col6">-28</td>
+<td id="T_9b823_row4_col7" class="data row4 col7">Zak Butters Out</td>
+</tr>
+</tbody>
+</table>
+
+
+  </div>
+
+
+</div>
+</div>
+<p>In all but one of these games the models forecasts were more accurate than the Punters! It’s hard to pin down a reason, but a few possible explanations come to mind: the importance of team systems in the modern game, the high quality of the average player today, or simply variance.</p>
+<p>To wrap up the year, I wanted to take a slightly closer look at the HGR model’s performance for 2026 across Squiggle’s metrics and look toward some potential improvements for 2027.</p>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<p>Tips were a strong spot for the model in 2026, though it is the weakest measure of the model’s quality, as they don’t capture how strongly a side was favoured by the tipster. Regardless, it was nice to come out equal first.</p>
+<p>A fun way to look back on the year is to see which games helped the model get ahead, in particular those where the model held the most contrarian view. This table shows the games where the model tipped against the rest of the field and the resulting outcomes.</p>
+<div id="f686bc97" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+
+
+
+  <meta charset="utf-8">
+  <style>
+    
+@font-face {
+    font-family: 'PPFormula';
+    src: url('file:///Users/edwardwatson/Documents/AFLModel/fitzRoyPy-main/PlotStyles/fonts/PPFormula/PPFormulaMedium.otf') format('opentype');
+}
+
+    .afl-table-wrap { background-color: #f5eedc; font-family: 'PPFormula', sans-serif; color: #000000; padding: 30px; }
+    .afl-table-wrap h2 { font-family: 'PPFormula', sans-serif; color: #000000; font-size: 18px; font-weight: 500; margin: 0 0 16px; }
+  </style>
+
+
+  <div class="afl-table-wrap">
+    <h2 class="anchored"> Tipping against the field, most contrarian tips</h2>
+    <style type="text/css">
+#T_fa8aa  {
+  font-family: 'PPFormula', sans-serif;
+  background-color: #f5eedc;
+  color: #000000;
+  border-collapse: collapse;
+  width: 100%;
+}
+#T_fa8aa th {
+  font-family: 'PPFormula', sans-serif;
+  font-size: 13px;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #333;
+  background-color: #f5eedc;
+  color: #000000;
+}
+#T_fa8aa td {
+  font-family: 'PPFormula', sans-serif;
+  font-size: 12px;
+  padding: 8px 14px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  background-color: #f5eedc;
+  color: #000000;
+}
+#T_fa8aa th.col0 {
+  text-align: center;
+}
+#T_fa8aa td.col0 {
+  text-align: center;
+}
+#T_fa8aa th.col4 {
+  text-align: center;
+}
+#T_fa8aa td.col4 {
+  text-align: center;
+}
+#T_fa8aa th.col5 {
+  text-align: center;
+}
+#T_fa8aa td.col5 {
+  text-align: center;
+}
+</style>
+
+<table id="T_fa8aa" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th id="T_fa8aa_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Round</th>
+<th id="T_fa8aa_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Home</th>
+<th id="T_fa8aa_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Away</th>
+<th id="T_fa8aa_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">HGR tip</th>
+<th id="T_fa8aa_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Models against</th>
+<th id="T_fa8aa_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">Total models</th>
+<th id="T_fa8aa_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">Correct</th>
+<th id="T_fa8aa_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_fa8aa_row0_col0" class="data row0 col0">11</td>
+<td id="T_fa8aa_row0_col1" class="data row0 col1">Richmond</td>
+<td id="T_fa8aa_row0_col2" class="data row0 col2">Essendon</td>
+<td id="T_fa8aa_row0_col3" class="data row0 col3">Richmond</td>
+<td id="T_fa8aa_row0_col4" class="data row0 col4">30</td>
+<td id="T_fa8aa_row0_col5" class="data row0 col5">30</td>
+<td id="T_fa8aa_row0_col6" class="data row0 col6">Yes</td>
+<td id="T_fa8aa_row0_col7" class="data row0 col7"></td>
+</tr>
+<tr class="even">
+<td id="T_fa8aa_row1_col0" class="data row1 col0">13</td>
+<td id="T_fa8aa_row1_col1" class="data row1 col1">Collingwood</td>
+<td id="T_fa8aa_row1_col2" class="data row1 col2">Melbourne</td>
+<td id="T_fa8aa_row1_col3" class="data row1 col3">Melbourne</td>
+<td id="T_fa8aa_row1_col4" class="data row1 col4">28</td>
+<td id="T_fa8aa_row1_col5" class="data row1 col5">30</td>
+<td id="T_fa8aa_row1_col6" class="data row1 col6">Yes</td>
+<td id="T_fa8aa_row1_col7" class="data row1 col7"></td>
+</tr>
+<tr class="odd">
+<td id="T_fa8aa_row2_col0" class="data row2 col0">4</td>
+<td id="T_fa8aa_row2_col1" class="data row2 col1">Richmond</td>
+<td id="T_fa8aa_row2_col2" class="data row2 col2">Port Adelaide</td>
+<td id="T_fa8aa_row2_col3" class="data row2 col3">Richmond</td>
+<td id="T_fa8aa_row2_col4" class="data row2 col4">27</td>
+<td id="T_fa8aa_row2_col5" class="data row2 col5">28</td>
+<td id="T_fa8aa_row2_col6" class="data row2 col6">No</td>
+<td id="T_fa8aa_row2_col7" class="data row2 col7"></td>
+</tr>
+<tr class="even">
+<td id="T_fa8aa_row3_col0" class="data row3 col0">4</td>
+<td id="T_fa8aa_row3_col1" class="data row3 col1">Melbourne</td>
+<td id="T_fa8aa_row3_col2" class="data row3 col2">Gold Coast</td>
+<td id="T_fa8aa_row3_col3" class="data row3 col3">Melbourne</td>
+<td id="T_fa8aa_row3_col4" class="data row3 col4">27</td>
+<td id="T_fa8aa_row3_col5" class="data row3 col5">28</td>
+<td id="T_fa8aa_row3_col6" class="data row3 col6">Yes</td>
+<td id="T_fa8aa_row3_col7" class="data row3 col7"></td>
+</tr>
+<tr class="odd">
+<td id="T_fa8aa_row4_col0" class="data row4 col0">18</td>
+<td id="T_fa8aa_row4_col1" class="data row4 col1">Greater Western Sydney</td>
+<td id="T_fa8aa_row4_col2" class="data row4 col2">Geelong</td>
+<td id="T_fa8aa_row4_col3" class="data row4 col3">Greater Western Sydney</td>
+<td id="T_fa8aa_row4_col4" class="data row4 col4">27</td>
+<td id="T_fa8aa_row4_col5" class="data row4 col5">30</td>
+<td id="T_fa8aa_row4_col6" class="data row4 col6">Yes</td>
+<td id="T_fa8aa_row4_col7" class="data row4 col7"></td>
+</tr>
+</tbody>
+</table>
+
+
+  </div>
+
+
+</div>
+</div>
+<p>Round 11 saw the model stand against the field to tip the Tigers to beat the Bombers, which paid off. It was one of just 8 times this season where only one model tipped the winning side! Credit should be given to What Snoo Thinks’ model, which was the only model to do it twice.</p>
 </section>
+<section id="mae" class="level2">
+<h2 class="anchored" data-anchor-id="mae">MAE</h2>
+<p>Mean absolute error (MAE) is the variable I optimise for when developing the model, so to finish 9th (12th including aggregate models) was a great result. By round, the model was fairly close to the s10, with only a few rounds where the model registered higher error. The biggest indication of a need for improvement is that the model ranked 13th (16th including aggregate models) in root mean squared error (RMSE), which penalises big misses more heavily than MAE.</p>
+<p>This year the model produced more conservative margins than other models, underestimating the frequency of big margins. The chart below shows that the model consistently tipped tighter margins compared to the s10, particularly where the s10 forecasted a blowout.</p>
+<p><img src="ModelMargins.png" class="img-fluid"></p>
+<p>The other area of improvement relates to total score. Currently the model makes no adjustments for the expected total score. The model currently experiences greater variance in margin error at higher totals when compared to the s10, though both grow with as total score increases.</p>
+<p><img src="MarginVariance.png" class="img-fluid"></p>
+<p>Accounting for total score won’t matter so much for expected margins, but it will have an impact on win probabilities. This brings me to the final metric, bits.</p>
+</section>
+<section id="bits" class="level2">
+<h2 class="anchored" data-anchor-id="bits">Bits</h2>
+<p>Along with MAE, Bits is the best indicator of whether a model is good, effectively measuring the calibration of the model’s win probabilities. Unsurprisingly to me, the model finished dead last, as I had not refit the win probability function to account for some new model updates and ran out of time before the start of the season. In the background of the season I reworked the win probability calculation but decided to let the existing calculation run as it was too late to salvage my bits score.</p>
+<p>To visualise just how far off the model was this year, look at this chart, it shows the model’s win probabilities against the observed win rate. The S-shape of the curve tells us the model was too conservative in its win probabilities, underestimating the odds of big favourites winning, and overestimating the likelihood of underdogs wining.</p>
+<p><img src="WinProbCalibration.png" class="img-fluid"></p>
+<p>I’ve already looked into improving this win probability function, and have built a solution. The last remaining change will be to incorporate the output of a total score model, which is necessary to account for the higher variance of games with large totals.</p>
+</section>
+<section id="looking-forward-to-2027" class="level2">
+<h2 class="anchored" data-anchor-id="looking-forward-to-2027">Looking Forward to 2027</h2>
+<p>Next year will see an expanded offering on the blog. The plan so far is to add: - Total Score - Player Rankings - AFLW</p>
+<p>Finally, a big thank you to Max Barry at Squiggle.com for organising and administering the Squiggle competition. I had a great time following along and participating.</p>
+
+
 </section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>I’ve taken this scoring shots terminology from Matter of Stats.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p><a href="https://theafllab.wordpress.com/2021/03/24/introducing-aflxscore">This is the explainer for the Xscore calculations I use.</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>MAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p><a href="https://www.matterofstats.com/mafl-stats-journal/2024/7/8/the-relationship-between-expected-victory-margins-and-estimated-win-probabilities">This article explains the observed correlation between win probability and expected margin and totals.</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>I initially planned to include my player ratings in the model.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Punters is a combination of bookmakers’ odds and lines.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The other being the outrageous 72 point line for the Dogs to beat the Dons.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

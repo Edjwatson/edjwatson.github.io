@@ -4,21 +4,21 @@
     "href": "posts/index.html",
     "title": "Posts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nThe First Sample Size\n\n\nWere opening round quarters really shorter\n\n\n\nMar 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nState of the Model Address\n\n\nWhat to expect on HGR in 2026\n\n\n\nMar 4, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe K-Surface\n\n\nImproving the optimisation of the K-factor\n\n\n\nNov 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nModel Review 2026\n\n\nA model wrap up for 2026\n\n\n\nSep 29, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe First Sample Size\n\n\nWere opening round quarters really shorter\n\n\n\nMar 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nState of the Model Address\n\n\nWhat to expect on HGR in 2026\n\n\n\nMar 4, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe K-Surface\n\n\nImproving the optimisation of the K-factor\n\n\n\nNov 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding ODELO\n\n\nAn introduction to the model I use to make predictions\n\n\n\nApr 30, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/The First Sample Size/thefirstsamplesize.html",
-    "href": "posts/The First Sample Size/thefirstsamplesize.html",
-    "title": "The First Sample Size",
+    "objectID": "posts/Intro/Introduction.html",
+    "href": "posts/Intro/Introduction.html",
+    "title": "Understanding ODELO",
     "section": "",
-    "text": "A beautiful view of the SCG before Thursday nights game\nCal Twomey penned this article today over on the AFL site . The article makes the point that the AFL’s new rule changes have already achieved their goal in reducing quarter lengths. This is despite only 20 quarters having been played across the 5 opening round games.\nThe AFL’s statistical illiteracy has been much derided on footy twitter and this article is no exception. To be generous to Twomey he seems aware that the sample size is very small, however, it is still far too small a sample size to draw any conclusions. To illustrate the point, I want to prove through a hypothesis test that the shorter quarters this week tell us little to nothing about whether the underlying distribution of quarter lengths has changed."
+    "text": "Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements."
   },
   {
-    "objectID": "posts/The First Sample Size/thefirstsamplesize.html#footnotes",
-    "href": "posts/The First Sample Size/thefirstsamplesize.html#footnotes",
-    "title": "The First Sample Size",
+    "objectID": "posts/Intro/Introduction.html#footnotes",
+    "href": "posts/Intro/Introduction.html#footnotes",
+    "title": "Understanding ODELO",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nFetched via the fitzroy API.↩︎\nThis sample size is still on the lower side, but given the article only compares to 2025 I want to restrict my analysis to it.↩︎"
+    "text": "Footnotes\n\n\nI’ve taken this scoring shots terminology from Matter of Stats.↩︎\nThis is the explainer for the Xscore calculations I use.↩︎\nMAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.↩︎\nThis article explains the observed correlation between win probability and expected margin and totals.↩︎"
   },
   {
     "objectID": "posts/KFactor/Kfactor.html",
@@ -35,18 +35,60 @@
     "text": "Footnotes\n\n\nAt least for this model I’d like a high degree of explainability↩︎\nFor the optimisation I’ve applied only continuity is required, but I believe this property is reasonable to assume↩︎\nI wrote this before the addition of wildcard round and feel even more sure about it now↩︎"
   },
   {
-    "objectID": "posts/Intro/Introduction.html",
-    "href": "posts/Intro/Introduction.html",
-    "title": "Understanding ODELO",
+    "objectID": "posts/The First Sample Size/thefirstsamplesize.html",
+    "href": "posts/The First Sample Size/thefirstsamplesize.html",
+    "title": "The First Sample Size",
     "section": "",
-    "text": "Welcome to Holy Grail Ratings. This is a project of mine to try and model AFL margins as best as possible. This post explains how the model currently works, why I’ve made particular choices, and planned future improvements."
+    "text": "A beautiful view of the SCG before Thursday nights game\nCal Twomey penned this article today over on the AFL site . The article makes the point that the AFL’s new rule changes have already achieved their goal in reducing quarter lengths. This is despite only 20 quarters having been played across the 5 opening round games.\nThe AFL’s statistical illiteracy has been much derided on footy twitter and this article is no exception. To be generous to Twomey he seems aware that the sample size is very small, however, it is still far too small a sample size to draw any conclusions. To illustrate the point, I want to prove through a hypothesis test that the shorter quarters this week tell us little to nothing about whether the underlying distribution of quarter lengths has changed."
   },
   {
-    "objectID": "posts/Intro/Introduction.html#footnotes",
-    "href": "posts/Intro/Introduction.html#footnotes",
-    "title": "Understanding ODELO",
+    "objectID": "posts/The First Sample Size/thefirstsamplesize.html#footnotes",
+    "href": "posts/The First Sample Size/thefirstsamplesize.html#footnotes",
+    "title": "The First Sample Size",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nI’ve taken this scoring shots terminology from Matter of Stats.↩︎\nThis is the explainer for the Xscore calculations I use.↩︎\nMAE measures the absolute prediction difference. If the expected margin is 12 and the final score is 24 or 0 the MAE is 12 in each case. This measure is chosen because ODELO is optimised for margin prediction.↩︎\nThis article explains the observed correlation between win probability and expected margin and totals.↩︎"
+    "text": "Footnotes\n\n\nFetched via the fitzroy API.↩︎\nThis sample size is still on the lower side, but given the article only compares to 2025 I want to restrict my analysis to it.↩︎"
+  },
+  {
+    "objectID": "posts/Model Review 2026/modelreview2026.html",
+    "href": "posts/Model Review 2026/modelreview2026.html",
+    "title": "Model Review 2026",
+    "section": "",
+    "text": "With the grand final taking place last Saturday, my first year submitting tips to Squiggle has come to an end. It was a pleasantly surprising season, with the model finishing equal first for most tips and performing well in all metrics except bits (more on that later).\nMy intuition for why the model performed well is its heavy weighting toward Xscore, which seemed to be a good predictor of future performance this year, and a decision not to include player ratings in the Squiggle tips.1\nThe importance of players seemed a particular red herring this year, best emphasised by the Swans, who absorbed the absence of key players with ease. In fact, of the 5 biggest differences between Squiggle’s s10 (average of last years best ten models) and the Punters2, 4 were associated with key outs!3\nPunters vs s10 biggest pre-game margin differences \n    \n\n\n\n\nRound\nHome\nAway\nPunters margin\ns10 margin\nDiff\nActual margin\n\n\n\n\n\n24\nSydney\nNorth Melbourne\n+1.17\n+31.01\n29.84\n+53\nPullman 5 Out\n\n\n7\nWestern Bulldogs\nSydney\n-19.83\n+2.41\n22.24\n-66\nSam Darcy Out\n\n\n4\nWestern Bulldogs\nEssendon\n+73.80\n+51.70\n22.10\n+34\n\n\n\n26\nSydney\nBrisbane Lions\n-23.70\n-3.11\n20.59\n+53\nPullman 5 Out\n\n\n19\nPort Adelaide\nFremantle\n-45.20\n-25.05\n20.15\n-28\nZak Butters Out\nIn all but one of these games the models forecasts were more accurate than the Punters! It’s hard to pin down a reason, but a few possible explanations come to mind: the importance of team systems in the modern game, the high quality of the average player today, or simply variance.\nTo wrap up the year, I wanted to take a slightly closer look at the HGR model’s performance for 2026 across Squiggle’s metrics and look toward some potential improvements for 2027."
+  },
+  {
+    "objectID": "posts/Model Review 2026/modelreview2026.html#tips",
+    "href": "posts/Model Review 2026/modelreview2026.html#tips",
+    "title": "Model Review 2026",
+    "section": "Tips",
+    "text": "Tips\nTips were a strong spot for the model in 2026, though it is the weakest measure of the model’s quality, as they don’t capture how strongly a side was favoured by the tipster. Regardless, it was nice to come out equal first.\nA fun way to look back on the year is to see which games helped the model get ahead, in particular those where the model held the most contrarian view. This table shows the games where the model tipped against the rest of the field and the resulting outcomes.\n\n\n\n\n\n  \n  \n\n\n  \n     Tipping against the field, most contrarian tips\n    \n\n\n\n\nRound\nHome\nAway\nHGR tip\nModels against\nTotal models\nCorrect\n\n\n\n\n\n11\nRichmond\nEssendon\nRichmond\n30\n30\nYes\n\n\n\n13\nCollingwood\nMelbourne\nMelbourne\n28\n30\nYes\n\n\n\n4\nRichmond\nPort Adelaide\nRichmond\n27\n28\nNo\n\n\n\n4\nMelbourne\nGold Coast\nMelbourne\n27\n28\nYes\n\n\n\n18\nGreater Western Sydney\nGeelong\nGreater Western Sydney\n27\n30\nYes\n\n\n\n\n\n\n  \n\n\n\n\nRound 11 saw the model stand against the field to tip the Tigers to beat the Bombers, which paid off. It was one of just 8 times this season where only one model tipped the winning side! Credit should be given to What Snoo Thinks’ model, which was the only model to do it twice."
+  },
+  {
+    "objectID": "posts/Model Review 2026/modelreview2026.html#mae",
+    "href": "posts/Model Review 2026/modelreview2026.html#mae",
+    "title": "Model Review 2026",
+    "section": "MAE",
+    "text": "MAE\nMean absolute error (MAE) is the variable I optimise for when developing the model, so to finish 9th (12th including aggregate models) was a great result. By round, the model was fairly close to the s10, with only a few rounds where the model registered higher error. The biggest indication of a need for improvement is that the model ranked 13th (16th including aggregate models) in root mean squared error (RMSE), which penalises big misses more heavily than MAE.\nThis year the model produced more conservative margins than other models, underestimating the frequency of big margins. The chart below shows that the model consistently tipped tighter margins compared to the s10, particularly where the s10 forecasted a blowout.\n\nThe other area of improvement relates to total score. Currently the model makes no adjustments for the expected total score. The model currently experiences greater variance in margin error at higher totals when compared to the s10, though both grow with as total score increases.\n\nAccounting for total score won’t matter so much for expected margins, but it will have an impact on win probabilities. This brings me to the final metric, bits."
+  },
+  {
+    "objectID": "posts/Model Review 2026/modelreview2026.html#bits",
+    "href": "posts/Model Review 2026/modelreview2026.html#bits",
+    "title": "Model Review 2026",
+    "section": "Bits",
+    "text": "Bits\nAlong with MAE, Bits is the best indicator of whether a model is good, effectively measuring the calibration of the model’s win probabilities. Unsurprisingly to me, the model finished dead last, as I had not refit the win probability function to account for some new model updates and ran out of time before the start of the season. In the background of the season I reworked the win probability calculation but decided to let the existing calculation run as it was too late to salvage my bits score.\nTo visualise just how far off the model was this year, look at this chart, it shows the model’s win probabilities against the observed win rate. The S-shape of the curve tells us the model was too conservative in its win probabilities, underestimating the odds of big favourites winning, and overestimating the likelihood of underdogs wining.\n\nI’ve already looked into improving this win probability function, and have built a solution. The last remaining change will be to incorporate the output of a total score model, which is necessary to account for the higher variance of games with large totals."
+  },
+  {
+    "objectID": "posts/Model Review 2026/modelreview2026.html#looking-forward-to-2027",
+    "href": "posts/Model Review 2026/modelreview2026.html#looking-forward-to-2027",
+    "title": "Model Review 2026",
+    "section": "Looking Forward to 2027",
+    "text": "Looking Forward to 2027\nNext year will see an expanded offering on the blog. The plan so far is to add: - Total Score - Player Rankings - AFLW\nFinally, a big thank you to Max Barry at Squiggle.com for organising and administering the Squiggle competition. I had a great time following along and participating."
+  },
+  {
+    "objectID": "posts/Model Review 2026/modelreview2026.html#footnotes",
+    "href": "posts/Model Review 2026/modelreview2026.html#footnotes",
+    "title": "Model Review 2026",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nI initially planned to include my player ratings in the model.↩︎\nPunters is a combination of bookmakers’ odds and lines.↩︎\nThe other being the outrageous 72 point line for the Dogs to beat the Dons.↩︎"
   },
   {
     "objectID": "posts/StateoftheModel/stateofthemodel.html",
@@ -81,27 +123,27 @@
     "href": "about.html",
     "title": "Holy Grail Ratings",
     "section": "",
-    "text": "Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive Elo (ODELO) system (Read more here) that quantifies the performance of a team’s abilities on each side of the ball relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon which interest me."
+    "text": "Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive Elo (ODELO) system (Read more here) that quantifies the performance of a team’s abilities on each side of the ball, relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon which interest me."
   },
   {
     "objectID": "about.html#about-hgr",
     "href": "about.html#about-hgr",
     "title": "Holy Grail Ratings",
     "section": "",
-    "text": "Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive Elo (ODELO) system (Read more here) that quantifies the performance of a team’s abilities on each side of the ball relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon which interest me."
+    "text": "Welcome to Holy Grail Ratings! Here I provide AFL team ratings and weekly margin forecasts. I use an offensive and defensive Elo (ODELO) system (Read more here) that quantifies the performance of a team’s abilities on each side of the ball, relative to the average team at a neutral venue. I plan to post semi-regular content on the development of the model as well as other AFL phenomenon which interest me."
   },
   {
     "objectID": "about.html#about-me",
     "href": "about.html#about-me",
     "title": "Holy Grail Ratings",
     "section": "About Me",
-    "text": "About Me\nI’m a recent graduate of the Australian National University, where I studied Mathematial Finance and Politics, Philosophy and Economics. I’m interested in statistics and financial and betting markets, and most importantly AFL. The long-term goal of HGR is to combine these interests to create a margin model with an edge on betting markets. Outside of my stuides I work as a management consultant and enjoy swimming and running.\nIf you’re interested in talking, send me a message at holygrailratings@gmail.com or on X at @HG_Ratings."
+    "text": "About Me\nI’m a recent graduate of the Australian National University, where I studied Mathematial Finance and Politics, Philosophy and Economics. I’m interested in statistics and financial and betting markets, and most importantly AFL. The long-term goal of HGR is to combine these interests to create a margin model with an edge on betting markets. Outside of my studies I work as a management consultant and enjoy swimming and running.\nIf you’re interested in talking, send me a message at holygrailratings@gmail.com or on X at @HG_Ratings."
   },
   {
     "objectID": "about.html#favourite-resources",
     "href": "about.html#favourite-resources",
     "title": "Holy Grail Ratings",
     "section": "Favourite Resources",
-    "text": "Favourite Resources\nA collection of resources that I’ve found helpful in the process of developing my model.\n\nMatter Of Stats\nWheelo Ratings\nAFL Lab"
+    "text": "Favourite Resources\nA collection of resources that I’ve found helpful in the process of developing my model.\n\nMatter Of Stats\nWheelo Ratings\nAFL Lab\nBet the Process\nSquiggle"
   }
 ]
